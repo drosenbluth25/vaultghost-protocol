@@ -1,0 +1,14 @@
+# SHA-256 Git Object Hashes — drosenbluth25/vaultghost-protocol v1.1.1-FINAL-2.2
+# Release commit: b92db0fe82d4a83ed7a1a9f67164cec604e6df17
+# Generated: 2026-04-22T11:12:42Z
+# Note: these are Git blob SHA-1 object IDs, not file-level SHA-256.
+# For file-level SHA-256, clone the repo and run: sha256sum $(git ls-files)
+
+82e1c3333cfdf031a8640382e014dc6e7c200efb .github/CODEOWNERS
+290e72d352dc098595d13c7352d4564322dbec0c CITATION.cff
+d529c2d99e2aaf5f24e33f200339aeafb26eac65 CONTRIBUTING.md
+d57cf3fe8f4ab3522d099465ad28b54ccc65af00 LICENSE
+72fe893ecf294e27f70baf64460caff54b141bd9 NOTICE
+9f79e3f3a4f5cff4cff54521def721cdaece7879 README.md
+2aa5b2bfea7f954a2e3236b33601839a48fe79ce SECURITY.md
+e76034dbcd3270d9f0467abef527726f32c4e8ec SPECIFICATION.md
