@@ -9,7 +9,7 @@ This page summarizes the VaultGhost(TM) counsel-intake baseline as supplied to t
 - Starting commit SHA: `a1f3ab2188eab5bac1f315417d002470cd646fe4`
 - Workflow mode: pull request workflow
 - Working branch: `chore/vaultghost-counsel-intake-baseline`
-- Verification command: checksum-only artifact verification, plus any repo-local verification command discovered during inspection.
+- Verification command: checksum-only artifact verification. No executable repo-local verification harness exists at the starting commit (see `verification/README.md`).
 
 ## Supplied artifacts (vendored in this tree)
 
