@@ -45,4 +45,4 @@ VaultGhost is organized as a multi-repository protocol ecosystem. The table belo
 
 Status labels describe public repository evidence only. They do not assert full production readiness, legal sufficiency, external adoption, third-party validation, or complete end-to-end integration across all repositories.
 
-PProvisional patent filed February 25, 2026.                
+Provisional patent filed February 25, 2026.  
