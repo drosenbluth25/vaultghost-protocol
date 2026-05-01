@@ -30,19 +30,19 @@ This repository includes a `CITATION.cff` file. GitHub surfaces a "Cite this rep
 
 > Daniel Rosenbluth, *VaultGhost Protocol v1.1.1 FINAL-2.2*, 2026-02-21, Apache-2.0.
 
----
-
 ## Ecosystem
 
-| Repo | Role | Status |
-|---|---|---|
-| [vaultghost-protocol](https://github.com/drosenbluth25/vaultghost-protocol) (this repo) | Canonical specification | Specified |
-| vaultghost-core | Ed25519 signing + JCS canonicalization | Implemented |
-| vaultghost-verify | Deterministic verification pipeline | Implemented |
-| vaultghost-chain-ledger | SHA-256 provenance chain | Implemented |
-| vaultghost-stub | Python + Rust stub implementation | Implemented |
-| spec-orchestration-eval-harness | Eval harness for spec-driven benchmarking | Implemented (private) |
+VaultGhost is organized as a multi-repository protocol ecosystem. The table below separates specification, tested implementation, isolated verification artifacts, red-team stub work, and private/non-public tooling.
 
----
+| Repository | Role | Public status | Evidence boundary |
+|---|---|---|---|
+| [`vaultghost-protocol`](https://github.com/drosenbluth25/vaultghost-protocol) | Canonical specification | Specified | Contains the formal protocol specification, citation metadata, license, and release manifests. |
+| [`vaultghost-core`](https://github.com/drosenbluth25/vaultghost-core) | Ed25519 signing + canonicalization layer | Implemented with tests | Public repository contains schemas, tests, package files, and signing-related implementation evidence; ecosystem-level integration is not fully demonstrated here. |
+| [`vaultghost-verify`](https://github.com/drosenbluth25/vaultghost-verify) | Deterministic verification pipeline | Implemented with verification command | Public repository documents `make verify`, expected output matching, tamper-check behavior, and test commands; cross-repository artifact consumption remains limited. |
+| [`vaultghost-chain-ledger`](https://github.com/drosenbluth25/vaultghost-chain-ledger) | SHA-256 provenance-chain artifacts | Implemented but isolated | Public repository documents CHAIN_INDEX.json, provenance artifacts, and verify-chain behavior; external timestamping, third-party validation, and full ecosystem integration remain separate concerns. |
+| [`vaultghost-stub`](https://github.com/drosenbluth25/vaultghost-stub) | Python/Rust red-team stub | Stub / red-team prototype | Public repository describes itself as a minimal red-team review stub and not production-ready. |
+| `spec-orchestration-eval-harness` | Spec-driven benchmarking / orchestration harness | Private / not publicly verifiable | Repository is private; public README should not imply public verification. |
 
-Provisional patent filed February 25, 2026.
+Status labels describe public repository evidence only. They do not assert full production readiness, legal sufficiency, external adoption, third-party validation, or complete end-to-end integration across all repositories.
+
+PProvisional patent filed February 25, 2026.                
