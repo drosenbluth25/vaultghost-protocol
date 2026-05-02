@@ -1,4 +1,4 @@
-# VaultGhost Relevance Memorandum  --  Routed AI Systems, Specialized RL Agents, and the Provenance Gap
+# VaultGhost Relevance Memorandum -- Routed AI Systems, Specialized RL Agents, and the Provenance Gap
 
 ## Status
 
@@ -88,4 +88,4 @@ Suggested filename: `solly-liars-poker-relevance-memo-v0.1.md`
 
 This paper does not diminish LLMs. It clarifies them. LLMs are powerful general-purpose cognitive interfaces, but they are not universal optimal decision engines. In adversarial, uncertainty-heavy, multi-agent domains, specialized training regimes can outperform general language reasoning.
 
-That strengthens the case for routed, evidence-tracked, hybrid AI systems  --  and for protocols designed to preserve verifiable records of AI-mediated events.
+That strengthens the case for routed, evidence-tracked, hybrid AI systems -- and for protocols designed to preserve verifiable records of AI-mediated events.
