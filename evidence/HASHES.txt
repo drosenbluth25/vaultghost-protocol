@@ -1,0 +1,2 @@
+f52b02ae8579a13d3f50df4f96d42b8e6022f843fd4da6d30bc99e4b3e4eef5b  evidence/memos/routed-ai-systems/solly-liars-poker-relevance-memo-v0.1.md
+ee8f71103392dba9e46cd54112008f53d3e87cc9dba05d55c1ebb9c071270c32  evidence/memos/routed-ai-systems/solly-liars-poker-relevance-memo-v0.1.sha256
