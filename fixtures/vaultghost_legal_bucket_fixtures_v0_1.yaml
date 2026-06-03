@@ -1,0 +1,416 @@
+suite_id: VG-LEGAL-BUCKET-FIXTURES-v0.1
+protocol: VaultGhost Legal-Adjacent Evidence Packet
+version: '0.1'
+artifact_type: atomic_regression_fixture_suite
+status: draft
+default_bucket: QUARANTINED
+engine_assumptions:
+  starting_bucket_default: QUARANTINED
+  legal_conclusion_blocked_meaning: True only when the claim itself is a legal conclusion or when the expected output must
+    block legal-conclusion treatment. It does not mean every high-risk procedural fact is a legal conclusion.
+  tier_2_verification_exception: A tier-2 source may support VERIFIED only for a narrow event fact when the source directly
+    attests to that event, provenance is official, and no legal sufficiency conclusion is bundled into the claim.
+  document_fact_and_legal_conclusion_must_split: true
+  ai_memory_cannot_verify: true
+fixture_schema_required_fields:
+- fixture_id
+- name
+- dominant_rule
+- starting_bucket
+- claim
+- evidence_objects
+- expected_result
+- expected_rule_path
+- must_not_return
+fixtures:
+- fixture_id: VG-FIXTURE-001
+  name: Correct claim with fake citation
+  dominant_rule: fabricated_or_invalid_source_block
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The court issued an order on March 1, 2026 halting the foreclosure proceeding.
+    claim_type: procedural_status
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: AI_summary
+    source_tier: 5
+    relation_to_claim: no_support
+    provenance_status: AI_generated
+    access_status: available
+    supports_exact_claim: false
+    limitations:
+    - Citation cannot be traced to an actual court record.
+  expected_result:
+    expected_bucket: QUARANTINED
+    support_strength: none
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - No court order, docket entry, transcript, or attorney confirmation supplied.
+    - AI-generated source cannot verify the claim.
+    expected_transition_reason: Claim lacks reliable direct evidence despite appearing facially plausible.
+  expected_rule_path:
+  - fabricated_or_invalid_source_block
+  - fallback_quarantine
+  must_not_return:
+  - USER_ORIGINATED
+  - INFERRED
+  - PROVISIONALLY_VERIFIED
+  - VERIFIED
+- fixture_id: VG-FIXTURE-002
+  name: User statement only
+  dominant_rule: user_firsthand_statement_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The judge said the foreclosure could not proceed until executor status was resolved.
+    claim_type: user_account
+    asserted_as: firsthand_statement
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: user_statement
+    source_tier: 4
+    relation_to_claim: direct_support
+    provenance_status: user_supplied
+    access_status: available
+    supports_exact_claim: true
+    limitations:
+    - No transcript, order, docket entry, or attorney confirmation supplied.
+  expected_result:
+    expected_bucket: USER_ORIGINATED
+    support_strength: tracked_not_verified
+    legal_conclusion_blocked: true
+    expected_limitations:
+    - User account is tracked but not externally verified.
+    expected_transition_reason: User supplied firsthand statement, but no external corroboration exists.
+  expected_rule_path:
+  - user_firsthand_statement_check
+  - user_originated_ceiling_check
+  must_not_return:
+  - INFERRED
+  - PROVISIONALLY_VERIFIED
+  - VERIFIED
+- fixture_id: VG-FIXTURE-003
+  name: Attorney email supports procedural fact
+  dominant_rule: direct_but_caveated_support_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: Counsel stated that the foreclosure matter was adjourned pending probate-related developments.
+    claim_type: procedural_status
+    asserted_as: fact_about_attorney_statement
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: attorney_email
+    source_tier: 2
+    relation_to_claim: direct_support
+    provenance_status: user_supplied
+    access_status: available
+    supports_exact_claim: true
+    limitations:
+    - Attorney email supplied, but no court order or docket entry attached.
+  expected_result:
+    expected_bucket: PROVISIONALLY_VERIFIED
+    support_strength: moderate_strong
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - Supported by attorney communication, not primary court record.
+    expected_transition_reason: Secondary or near-primary source directly supports the exact claim with caveats.
+  expected_rule_path:
+  - direct_but_caveated_support_check
+  - tier_2_source_ceiling_check
+  must_not_return:
+  - VERIFIED
+- fixture_id: VG-FIXTURE-004
+  name: Court docket confirms filing date
+  dominant_rule: exact_direct_primary_support_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: A petition was filed on February 25, 2026.
+    claim_type: date_fact
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: docket_entry
+    source_tier: 1
+    relation_to_claim: direct_support
+    provenance_status: official
+    access_status: available
+    supports_exact_claim: true
+    limitations: []
+  expected_result:
+    expected_bucket: VERIFIED
+    support_strength: strong
+    legal_conclusion_blocked: false
+    expected_limitations: []
+    expected_transition_reason: Primary authoritative source directly supports the exact date claim with no material conflict.
+  expected_rule_path:
+  - exact_direct_primary_support_check
+  - no_material_conflict_check
+  - verified_assignment
+  must_not_return: []
+- fixture_id: VG-FIXTURE-005
+  name: Screenshot shows payment without official receipt
+  dominant_rule: provenance_ceiling_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: A payment was received on February 25, 2026.
+    claim_type: payment_fact
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: screenshot
+    source_tier: 3
+    relation_to_claim: direct_support
+    provenance_status: user_supplied
+    access_status: available
+    supports_exact_claim: true
+    limitations:
+    - Screenshot is not an official receipt.
+    - Underlying system record not independently retrieved.
+  expected_result:
+    expected_bucket: PROVISIONALLY_VERIFIED
+    support_strength: moderate
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - Payment is supported by screenshot but not official receipt.
+    expected_transition_reason: Direct but caveated transactional artifact supports the claim; VERIFIED is barred by provenance
+      limitation.
+  expected_rule_path:
+  - direct_but_caveated_support_check
+  - provenance_ceiling_check
+  must_not_return:
+  - VERIFIED
+- fixture_id: VG-FIXTURE-006
+  name: Real document with overreaching legal inference
+  dominant_rule: source_scope_limit_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: Because the court issued the order, the foreclosure is legally defective.
+    claim_type: legal_conclusion
+    asserted_as: legal_conclusion
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: court_order
+    source_tier: 1
+    relation_to_claim: indirect_support
+    provenance_status: official
+    access_status: available
+    supports_exact_claim: false
+    limitations:
+    - Court order exists but does not state the asserted legal conclusion.
+  expected_result:
+    expected_bucket: INFERRED
+    support_strength: weak
+    legal_conclusion_blocked: true
+    expected_limitations:
+    - Document fact may be verified separately.
+    - Legal conclusion is not directly stated by court or counsel.
+    expected_transition_reason: A source can verify only what it directly supports, not every inference built on top of it.
+  expected_rule_path:
+  - legal_conclusion_block
+  - source_scope_limit_check
+  - indirect_support_check
+  must_not_return:
+  - PROVISIONALLY_VERIFIED
+  - VERIFIED
+- fixture_id: VG-FIXTURE-007
+  name: Two records conflict on date
+  dominant_rule: material_contradiction_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The hearing occurred on March 12, 2026.
+    claim_type: date_fact
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: attorney_email
+    source_tier: 2
+    relation_to_claim: direct_support
+    provenance_status: user_supplied
+    access_status: available
+    supports_exact_claim: true
+    limitations: []
+  - evidence_id: E-002
+    source_type: docket_entry
+    source_tier: 1
+    relation_to_claim: contradiction
+    provenance_status: official
+    access_status: available
+    supports_exact_claim: false
+    limitations:
+    - Docket lists March 13, 2026 instead.
+  expected_result:
+    expected_bucket: CONTRADICTED
+    support_strength: conflicted
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - Attorney email and official docket conflict on hearing date.
+    expected_transition_reason: Reliable evidence materially conflicts with the claim.
+  expected_rule_path:
+  - material_contradiction_check
+  - stronger_source_resolution_check
+  - contradicted_assignment
+  must_not_return:
+  - VERIFIED
+- fixture_id: VG-FIXTURE-008
+  name: AI prior memory only
+  dominant_rule: ai_memory_cannot_verify_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The probate court clerk confirmed that Letters Testamentary were pending.
+    claim_type: procedural_status
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: AI_summary
+    source_tier: 5
+    relation_to_claim: context_only
+    provenance_status: AI_generated
+    access_status: available
+    supports_exact_claim: false
+    limitations:
+    - Derived from prior-session memory or model reconstruction.
+  expected_result:
+    expected_bucket: QUARANTINED
+    support_strength: weak
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - AI memory cannot independently verify the claim.
+    expected_transition_reason: Model-generated memory is not evidence.
+  expected_rule_path:
+  - ai_memory_cannot_verify_check
+  - fallback_quarantine
+  must_not_return:
+  - USER_ORIGINATED
+  - INFERRED
+  - PROVISIONALLY_VERIFIED
+  - VERIFIED
+- fixture_id: VG-FIXTURE-009
+  name: OCR uncertainty in scanned PDF
+  dominant_rule: provenance_ceiling_check
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The scanned filing lists the respondent as Daniel Rosenbluth.
+    claim_type: document_fact
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: filed_pleading
+    source_tier: 1
+    relation_to_claim: direct_support
+    provenance_status: official
+    access_status: partial
+    supports_exact_claim: true
+    limitations:
+    - Scanned document contains OCR uncertainty.
+    - Name field is partially degraded in extracted text.
+  expected_result:
+    expected_bucket: PROVISIONALLY_VERIFIED
+    support_strength: moderate_strong
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - Primary source appears to support the claim, but OCR/provenance uncertainty bars VERIFIED.
+    expected_transition_reason: Direct support exists, but material readability limitation prevents full verification.
+  expected_rule_path:
+  - direct_but_caveated_support_check
+  - provenance_ceiling_check
+  must_not_return:
+  - VERIFIED
+- fixture_id: VG-FIXTURE-010
+  name: Unsupported motive claim
+  dominant_rule: motive_intent_accusation_block
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The invoice was sent as a trick to pressure the client into paying an improper fee.
+    claim_type: motive_intent_claim
+    asserted_as: motive_claim
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: invoice
+    source_tier: 3
+    relation_to_claim: context_only
+    provenance_status: user_supplied
+    access_status: available
+    supports_exact_claim: false
+    limitations:
+    - Invoice exists but does not establish intent or motive.
+  expected_result:
+    expected_bucket: QUARANTINED
+    support_strength: none
+    legal_conclusion_blocked: true
+    expected_limitations:
+    - Motive and intent are not directly supported by the invoice.
+    expected_transition_reason: Unsupported accusatory or motive-based claim must be quarantined.
+  expected_rule_path:
+  - motive_intent_accusation_block
+  - fallback_quarantine
+  must_not_return:
+  - USER_ORIGINATED
+  - INFERRED
+  - PROVISIONALLY_VERIFIED
+  - VERIFIED
+- fixture_id: VG-FIXTURE-011
+  name: Process-server affidavit confirms service attempt
+  dominant_rule: tier_2_event_fact_verification_exception
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The process server attempted service at the residence on April 5, 2026.
+    claim_type: event_fact
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: process_server_affidavit
+    source_tier: 2
+    relation_to_claim: direct_support
+    provenance_status: official
+    access_status: available
+    supports_exact_claim: true
+    limitations: []
+    bucket_ceiling_override: may_verify_narrow_event_fact_only
+    does_not_verify:
+    - legal_sufficiency_of_service
+  expected_result:
+    expected_bucket: VERIFIED
+    support_strength: strong
+    legal_conclusion_blocked: false
+    expected_limitations:
+    - Verified only as to attempted service event, not legal sufficiency of service.
+    expected_transition_reason: Official affidavit directly supports the narrow event fact; legal conclusions remain separate.
+  expected_rule_path:
+  - exact_direct_support_check
+  - tier_2_event_fact_verification_exception
+  - legal_sufficiency_split_check
+  must_not_return: []
+- fixture_id: VG-FIXTURE-012
+  name: Missing attachment referenced in email
+  dominant_rule: missing_source_block
+  starting_bucket: QUARANTINED
+  claim:
+    claim_text: The attached court order halted the foreclosure proceeding.
+    claim_type: procedural_status
+    asserted_as: fact
+  evidence_objects:
+  - evidence_id: E-001
+    source_type: attorney_email
+    source_tier: 2
+    relation_to_claim: context_only
+    provenance_status: user_supplied
+    access_status: available
+    supports_exact_claim: false
+    limitations:
+    - Email references an attachment, but attachment is missing.
+    - Email body does not directly quote or reproduce the order.
+  expected_result:
+    expected_bucket: QUARANTINED
+    support_strength: weak
+    legal_conclusion_blocked: true
+    expected_limitations:
+    - Referenced attachment is missing.
+    - No available source directly supports the exact claim.
+    expected_transition_reason: A missing referenced attachment cannot verify the claim.
+  expected_rule_path:
+  - missing_source_block
+  - fallback_quarantine
+  must_not_return:
+  - INFERRED
+  - PROVISIONALLY_VERIFIED
+  - VERIFIED

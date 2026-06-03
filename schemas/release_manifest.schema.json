@@ -1,0 +1,111 @@
+{
+  "$id": "https://vaultghost.local/schemas/release_manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "bytes": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "filename": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[a-fA-F0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename",
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "characterization": {
+      "type": "string"
+    },
+    "created_at": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "manifest_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "non_goals": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "protocol": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "revision_note": {
+      "type": "string"
+    },
+    "status": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "tested_layers": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "failed": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "fixtures": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "layer": {
+            "type": "string"
+          },
+          "passed": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "layer",
+          "fixtures",
+          "passed",
+          "failed"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "version": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "manifest_id",
+    "protocol",
+    "version",
+    "created_at",
+    "status",
+    "artifacts"
+  ],
+  "title": "VaultGhost Release Manifest",
+  "type": "object"
+}

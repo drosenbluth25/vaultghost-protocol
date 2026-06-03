@@ -1,0 +1,69 @@
+{
+  "$id": "https://vaultghost.local/schemas/claim_splitting_fixture.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "artifact_type": {
+      "type": "string"
+    },
+    "fixtures": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "expected_atomic_claims": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "expected_rule_path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "fixture_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "input_statement": {
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "raw_statement": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fixture_id",
+          "name"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "status": {
+      "type": "string"
+    },
+    "suite_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "version": {
+      "type": [
+        "string",
+        "number"
+      ]
+    }
+  },
+  "required": [
+    "suite_id",
+    "fixtures"
+  ],
+  "title": "VaultGhost Claim Splitting Fixture Suite",
+  "type": "object"
+}

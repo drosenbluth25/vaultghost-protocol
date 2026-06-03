@@ -1,0 +1,91 @@
+{
+  "$id": "https://vaultghost.local/schemas/final_claim_packet.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "claim_records": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "claim_id": {
+            "type": "string"
+          },
+          "claim_text": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "claim_type": {
+            "type": "string"
+          },
+          "current_bucket": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "legal_conclusion_blocked": {
+            "type": "boolean"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rule_path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "starting_bucket": {
+            "type": "string"
+          },
+          "support_strength": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "claim_text",
+          "current_bucket"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "packet_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "packet_invariants": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "raw_statement": {
+      "type": "string"
+    },
+    "version": {
+      "type": [
+        "string",
+        "number"
+      ]
+    }
+  },
+  "required": [
+    "packet_id",
+    "claim_records"
+  ],
+  "title": "VaultGhost Final Claim Packet",
+  "type": "object"
+}

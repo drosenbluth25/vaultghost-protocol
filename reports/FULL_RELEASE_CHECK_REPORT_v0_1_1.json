@@ -1,0 +1,114 @@
+{
+  "checks": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/validate_all_schemas.py",
+        "--root",
+        "."
+      ],
+      "finished_at": "2026-06-03T06:11:36.545594Z",
+      "name": "schema_validation",
+      "returncode": 0,
+      "started_at": "2026-06-03T06:11:36.158041Z",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "PASS fixtures/vaultghost_claim_splitting_fixtures_v0_1.yaml <= schemas/claim_splitting_fixture.schema.json\nPASS fixtures/vaultghost_legal_bucket_fixtures_v0_1.yaml <= schemas/bucket_fixture.schema.json\nPASS fixtures/vaultghost_integration_fixtures_v0_1.yaml <= schemas/integration_fixture.schema.json\nPASS fixtures/vaultghost_precedence_fixtures_v0_1.yaml <= schemas/precedence_fixture.schema.json\nSchema validation overall=PASS; report=reports/SCHEMA_VALIDATION_REPORT_v0_1_1.json\n"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "evaluators/evaluate_claim_splitting_fixture.py",
+        "fixtures/vaultghost_claim_splitting_fixtures_v0_1.yaml",
+        "--report",
+        "reports/vaultghost_claim_splitting_eval_report_v0_1.json"
+      ],
+      "finished_at": "2026-06-03T06:11:36.733296Z",
+      "name": "claim_splitting",
+      "returncode": 0,
+      "started_at": "2026-06-03T06:11:36.545659Z",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "Suite VG-CLAIM-SPLIT-FIXTURES-v0.1 v0.1: 12 passed, 0 failed\nstrict=True\n"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "evaluators/evaluate_bucket_fixture.py",
+        "fixtures/vaultghost_legal_bucket_fixtures_v0_1.yaml",
+        "--check-limitations"
+      ],
+      "finished_at": "2026-06-03T06:11:36.900280Z",
+      "name": "bucket_transitions",
+      "returncode": 0,
+      "started_at": "2026-06-03T06:11:36.733352Z",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "Suite VG-LEGAL-BUCKET-FIXTURES-v0.1 v0.1: 12 passed, 0 failed (strict=True, check_limitations=True)\n"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "evaluators/evaluate_vaultghost_integration.py",
+        "fixtures/vaultghost_integration_fixtures_v0_1.yaml",
+        "--splitter",
+        "evaluators/evaluate_claim_splitting_fixture.py",
+        "--bucket-evaluator",
+        "evaluators/evaluate_bucket_fixture.py",
+        "--report",
+        "reports/vaultghost_integration_eval_report_v0_1.json"
+      ],
+      "finished_at": "2026-06-03T06:11:37.061225Z",
+      "name": "integration",
+      "returncode": 0,
+      "started_at": "2026-06-03T06:11:36.900350Z",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "Suite VG-END-TO-END-FIXTURES-v0.1 v0.1: 8 passed, 0 failed\nstrict=True\n"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "evaluators/evaluate_precedence_fixture.py",
+        "fixtures/vaultghost_precedence_fixtures_v0_1.yaml",
+        "--report",
+        "reports/vaultghost_precedence_eval_report_v0_1.json",
+        "--check-limitations"
+      ],
+      "finished_at": "2026-06-03T06:11:37.240124Z",
+      "name": "precedence",
+      "returncode": 0,
+      "started_at": "2026-06-03T06:11:37.061284Z",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "Suite VG-PRECEDENCE-FIXTURES-v0.1 v0.1: 12 passed, 0 failed; strict=True check_limitations=True\n"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "tools/verify_release_manifest.py",
+        "vaultghost_public_release_manifest_v0_1_1.json",
+        "--schema",
+        "schemas/release_manifest.schema.json",
+        "--report",
+        "reports/MANIFEST_VERIFY_REPORT_v0_1_1.json"
+      ],
+      "finished_at": "2026-06-03T06:11:37.440667Z",
+      "name": "manifest_verification",
+      "returncode": 0,
+      "started_at": "2026-06-03T06:11:37.240181Z",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "Manifest VG-PUBLIC-RELEASE-MANIFEST-v0.1.1 v0.1.1: 32 passed, 0 failed; overall=PASS\n"
+    }
+  ],
+  "created_at": "2026-06-03T06:11:37.440741Z",
+  "overall_status": "PASS",
+  "report_id": "VG-FULL-RELEASE-CHECK-REPORT-v0.1.1",
+  "root": "/home/ubuntu/vaultghost-protocol",
+  "summary": {
+    "failed": 0,
+    "passed": 6,
+    "total": 6
+  }
+}

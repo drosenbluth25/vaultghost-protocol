@@ -1,0 +1,365 @@
+suite_id: VG-END-TO-END-FIXTURES-v0.1
+protocol: VaultGhost End-to-End Claim Governance Pipeline
+version: '0.1'
+artifact_type: integration_regression_fixture_suite
+status: draft
+purpose: Test raw_statement -> claim splitter -> bucket evaluator -> final claim packet.
+engine_boundaries:
+  splitter: decomposition only; emits atomic claims with starting_bucket QUARANTINED
+  bucket_evaluator: evidentiary classification only; assumes already atomic claims
+  integration_harness: binds evidence to emitted atomic claims and verifies packet-level invariants
+fixture_schema_required_fields:
+- fixture_id
+- name
+- raw_statement
+- evidence_bindings
+- expected_split_rule_path
+- expected_claim_records
+- must_not_packet
+fixtures:
+- fixture_id: VG-E2E-FIXTURE-001
+  name: Court order plus legal defect conclusion
+  dominant_invariant: legal_conclusions_do_not_inherit_verification
+  raw_statement: The court issued an order on March 1, 2026, and the foreclosure is legally defective.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-001-A
+      source_type: court_order
+      source_tier: 1
+      relation_to_claim: direct_support
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: true
+      limitations: []
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-001-B
+      source_type: court_order
+      source_tier: 1
+      relation_to_claim: indirect_support
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Court order exists but does not state the asserted legal conclusion.
+  expected_split_rule_path:
+  - document_fact_legal_conclusion_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: document_fact
+    current_bucket: VERIFIED
+    support_strength: strong
+    legal_conclusion_blocked: false
+  - claim_index: 2
+    claim_type: legal_conclusion
+    current_bucket: INFERRED
+    support_strength: weak
+    legal_conclusion_blocked: true
+  must_not_packet:
+  - legal_conclusion_verified
+  - merged_document_fact_with_legal_conclusion
+- fixture_id: VG-E2E-FIXTURE-002
+  name: Invoice event plus motive claim
+  dominant_invariant: motive_claims_do_not_inherit_event_verification
+  raw_statement: The invoice was sent on April 5, 2026, and the sender intended to pressure the client.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-002-A
+      source_type: invoice
+      source_tier: 3
+      relation_to_claim: direct_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: true
+      limitations:
+      - Invoice exists as user-supplied artifact.
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-002-B
+      source_type: invoice
+      source_tier: 3
+      relation_to_claim: context_only
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Invoice exists but does not establish intent or motive.
+  expected_split_rule_path:
+  - motive_intent_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: event_fact
+    current_bucket: PROVISIONALLY_VERIFIED
+    support_strength: moderate
+    legal_conclusion_blocked: false
+  - claim_index: 2
+    claim_type: motive_intent_claim
+    current_bucket: QUARANTINED
+    support_strength: none
+    legal_conclusion_blocked: true
+  must_not_packet:
+  - motive_claim_verified
+  - merged_event_fact_with_motive_claim
+- fixture_id: VG-E2E-FIXTURE-003
+  name: Attorney statement plus downstream legal consequence
+  dominant_invariant: attorney_statement_does_not_become_court_order
+  raw_statement: Counsel stated the foreclosure matter was adjourned pending probate, which means Selene
+    cannot proceed.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-003-A
+      source_type: attorney_email
+      source_tier: 2
+      relation_to_claim: direct_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: true
+      limitations:
+      - Attorney email supplied, but no court order or docket entry attached.
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-003-B
+      source_type: attorney_email
+      source_tier: 2
+      relation_to_claim: indirect_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Attorney statement may imply consequence but does not itself establish legal bar.
+  expected_split_rule_path:
+  - attribution_underlying_claim_split
+  - document_fact_legal_conclusion_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: attorney_statement_fact
+    current_bucket: PROVISIONALLY_VERIFIED
+    support_strength: moderate_strong
+    legal_conclusion_blocked: false
+  - claim_index: 2
+    claim_type: legal_conclusion
+    current_bucket: INFERRED
+    support_strength: weak
+    legal_conclusion_blocked: true
+  must_not_packet:
+  - legal_conclusion_verified
+  - treat_attorney_statement_as_court_order
+- fixture_id: VG-E2E-FIXTURE-004
+  name: Conflicting hearing date claims
+  dominant_invariant: contradiction_resolved_by_bucket_stage_not_splitter
+  raw_statement: The attorney email says the hearing occurred on March 12, 2026, but the docket lists
+    March 13, 2026.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-004-A
+      source_type: attorney_email
+      source_tier: 2
+      relation_to_claim: direct_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: true
+      limitations: []
+    - evidence_id: E-004-B
+      source_type: docket_entry
+      source_tier: 1
+      relation_to_claim: contradiction
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Docket lists March 13, 2026 instead.
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-004-B
+      source_type: docket_entry
+      source_tier: 1
+      relation_to_claim: direct_support
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: true
+      limitations: []
+  expected_split_rule_path:
+  - contradiction_pair_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: date_fact
+    current_bucket: CONTRADICTED
+    support_strength: conflicted
+    legal_conclusion_blocked: false
+  - claim_index: 2
+    claim_type: date_fact
+    current_bucket: VERIFIED
+    support_strength: strong
+    legal_conclusion_blocked: false
+  must_not_packet:
+  - resolve_contradiction_inside_splitter
+  - both_conflicting_dates_verified
+- fixture_id: VG-E2E-FIXTURE-005
+  name: Payment artifact plus filing completion inference
+  dominant_invariant: transactional_fact_does_not_verify_procedural_completion
+  raw_statement: The screenshot shows payment received on February 25, 2026, proving the filing was complete.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-005-A
+      source_type: screenshot
+      source_tier: 3
+      relation_to_claim: direct_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: true
+      limitations:
+      - Screenshot is not an official receipt.
+      - Underlying system record not independently retrieved.
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-005-B
+      source_type: screenshot
+      source_tier: 3
+      relation_to_claim: indirect_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Payment screenshot does not directly establish filing completion.
+  expected_split_rule_path:
+  - document_fact_legal_conclusion_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: payment_fact
+    current_bucket: PROVISIONALLY_VERIFIED
+    support_strength: moderate
+    legal_conclusion_blocked: false
+  - claim_index: 2
+    claim_type: procedural_status
+    current_bucket: INFERRED
+    support_strength: weak
+    legal_conclusion_blocked: false
+  must_not_packet:
+  - treat_payment_as_filing_completion
+  - procedural_inference_verified
+- fixture_id: VG-E2E-FIXTURE-006
+  name: Service attempt plus legal sufficiency conclusion
+  dominant_invariant: event_fact_does_not_verify_legal_sufficiency
+  raw_statement: The process server attempted service once, so service was legally sufficient.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-006-A
+      source_type: process_server_affidavit
+      source_tier: 2
+      relation_to_claim: direct_support
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: true
+      bucket_ceiling_override: may_verify_narrow_event_fact_only
+      limitations: []
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-006-B
+      source_type: process_server_affidavit
+      source_tier: 2
+      relation_to_claim: indirect_support
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Affidavit may support event fact but does not determine legal sufficiency.
+  expected_split_rule_path:
+  - document_fact_legal_conclusion_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: event_fact
+    current_bucket: VERIFIED
+    support_strength: strong
+    legal_conclusion_blocked: false
+  - claim_index: 2
+    claim_type: legal_conclusion
+    current_bucket: INFERRED
+    support_strength: weak
+    legal_conclusion_blocked: true
+  must_not_packet:
+  - legal_sufficiency_verified
+  - merge_service_attempt_with_legal_sufficiency
+- fixture_id: VG-E2E-FIXTURE-007
+  name: Missing attachment reference plus halted proceeding claim
+  dominant_invariant: missing_sources_do_not_inherit_verification
+  raw_statement: The email references an attached order, and the order halted the foreclosure proceeding.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-007-A
+      source_type: attorney_email
+      source_tier: 2
+      relation_to_claim: direct_support
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: true
+      limitations:
+      - Email references an attachment, but attachment is missing.
+  - claim_index: 2
+    evidence_objects:
+    - evidence_id: E-007-B
+      source_type: attorney_email
+      source_tier: 2
+      relation_to_claim: context_only
+      provenance_status: user_supplied
+      access_status: available
+      supports_exact_claim: false
+      limitations:
+      - Email references an attachment, but attachment is missing.
+      - Email body does not directly quote or reproduce the order.
+  expected_split_rule_path:
+  - document_fact_legal_conclusion_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: document_fact
+    current_bucket: QUARANTINED
+    support_strength: weak
+    legal_conclusion_blocked: true
+  - claim_index: 2
+    claim_type: procedural_status
+    current_bucket: QUARANTINED
+    support_strength: weak
+    legal_conclusion_blocked: true
+  must_not_packet:
+  - inherit_verification_from_missing_attachment
+  - halted_proceeding_verified
+- fixture_id: VG-E2E-FIXTURE-008
+  name: Already atomic filing date claim
+  dominant_invariant: single_atomic_statement_flows_through_pipeline
+  raw_statement: A petition was filed on February 25, 2026.
+  evidence_bindings:
+  - claim_index: 1
+    evidence_objects:
+    - evidence_id: E-008-A
+      source_type: docket_entry
+      source_tier: 1
+      relation_to_claim: direct_support
+      provenance_status: official
+      access_status: available
+      supports_exact_claim: true
+      limitations: []
+  expected_split_rule_path:
+  - single_atomic_no_split
+  - emit_atomic_claims
+  expected_claim_records:
+  - claim_index: 1
+    claim_type: date_fact
+    current_bucket: VERIFIED
+    support_strength: strong
+    legal_conclusion_blocked: false
+  must_not_packet:
+  - unnecessary_split
+  - atomic_claim_left_unclassified

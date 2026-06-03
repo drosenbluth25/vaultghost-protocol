@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use VaultGhost Protocol, please cite it."
+title: "VaultGhost Protocol"
+version: "0.1.1"
+date-released: "2026-06-02"
+authors:
+  - family-names: "Rosenbluth"
+    given-names: "Daniel"
+type: software

@@ -1,0 +1,233 @@
+{
+  "artifacts": [
+    {
+      "bytes": 973,
+      "filename": "release-check.yml",
+      "path": ".github/workflows/release-check.yml",
+      "sha256": "bba3d936d0ad0b90de4c9632ae1f2f248f1f3a2cc1be11acde64812fc21f5d0f",
+      "status": "included"
+    },
+    {
+      "bytes": 84,
+      "filename": ".gitignore",
+      "path": ".gitignore",
+      "sha256": "455df9172c9bdfa1f4e2e0c93fe63b5e09bf37570133cb63ba60860d8b76e38e",
+      "status": "included"
+    },
+    {
+      "bytes": 233,
+      "filename": "CITATION.cff",
+      "path": "CITATION.cff",
+      "sha256": "d58d571c018f5c988e246e32462e56e19c1af9e29a8a0284184923d82b3fe5f3",
+      "status": "included"
+    },
+    {
+      "bytes": 522,
+      "filename": "CONTRIBUTING.md",
+      "path": "CONTRIBUTING.md",
+      "sha256": "ba06d483d9b92d299fda8bb03a76c72b9fdf78bd4a2a2cbacfd330002e6a551b",
+      "status": "included"
+    },
+    {
+      "bytes": 124,
+      "filename": "LICENSE",
+      "path": "LICENSE",
+      "sha256": "1894240c781a86937511053e40f7e223a7364084d7ce0edc2c82e8948ccca9b5",
+      "status": "included"
+    },
+    {
+      "bytes": 751,
+      "filename": "README.md",
+      "path": "README.md",
+      "sha256": "7f98f95827c954b516a541ab653a4dfbc60338d4f78c3cf248766f4ed04173d5",
+      "status": "included"
+    },
+    {
+      "bytes": 1131,
+      "filename": "RELEASE_BODY_v0_1_1.md",
+      "path": "RELEASE_BODY_v0_1_1.md",
+      "sha256": "6d6cf86d7865dbc65e823f88a4403bb023c3e1042a35711dbd3d5aa29e302acb",
+      "status": "included"
+    },
+    {
+      "bytes": 268,
+      "filename": "RELEASE_NOTES_v0_1_1.md",
+      "path": "RELEASE_NOTES_v0_1_1.md",
+      "sha256": "c8aac82f9ff1d907a9acb8a464a8cae206329aff2d1e9217c96b9a8f05f592c4",
+      "status": "included"
+    },
+    {
+      "bytes": 251,
+      "filename": "SECURITY.md",
+      "path": "SECURITY.md",
+      "sha256": "9ac9777b89ea4a4e4771e2bc8ee817edf0a0e81c90177d57eccff523e62dd2e8",
+      "status": "included"
+    },
+    {
+      "bytes": 1064,
+      "filename": "RUN_ALL_CHECKS_LOCAL_PATCH_NOTES_v0_1_1.md",
+      "path": "docs/RUN_ALL_CHECKS_LOCAL_PATCH_NOTES_v0_1_1.md",
+      "sha256": "0274efee4e1985432ff712988467d7e6627ae23d9b5dee32d69bae3bd1047958",
+      "status": "included"
+    },
+    {
+      "bytes": 1344,
+      "filename": "VAULTGHOST_EXECUTION_INSTRUCTIONS_v0_1_1.md",
+      "path": "docs/VAULTGHOST_EXECUTION_INSTRUCTIONS_v0_1_1.md",
+      "sha256": "ba37549d6cbf37b965d9652d1a6f3472b1dc78498fc97e2b3870d74f39f9f69c",
+      "status": "included"
+    },
+    {
+      "bytes": 1156,
+      "filename": "index.md",
+      "path": "docs/index.md",
+      "sha256": "13d167b729b10bfbd5e4028f76b8d82bfe498e72a7255e01ec030c4d91589270",
+      "status": "included"
+    },
+    {
+      "bytes": 3242,
+      "filename": "vaultghost_fact_audit_comparison_section_v0_1_1.md",
+      "path": "docs/vaultghost_fact_audit_comparison_section_v0_1_1.md",
+      "sha256": "631ac14bf1ba6fb441a49e08868400dbf8e76d671992a97e5d3e17025aeabd56",
+      "status": "included"
+    },
+    {
+      "bytes": 12656,
+      "filename": "vaultghost_public_technical_note_v0_1_1.md",
+      "path": "docs/vaultghost_public_technical_note_v0_1_1.md",
+      "sha256": "444b6c57588c0a6a92d247de54e0b59936d71eeab3b33354c1922619eea4c6de",
+      "status": "included"
+    },
+    {
+      "bytes": 23516,
+      "filename": "evaluate_bucket_fixture.py",
+      "path": "evaluators/evaluate_bucket_fixture.py",
+      "sha256": "1d3c09c66ab019ebf95e89fdf88028eeadc6e542fcc290ba43bde705cb83f254",
+      "status": "included"
+    },
+    {
+      "bytes": 13782,
+      "filename": "evaluate_claim_splitting_fixture.py",
+      "path": "evaluators/evaluate_claim_splitting_fixture.py",
+      "sha256": "7c654f93547d547bc0ad2c6bc2d06d5d5093cbc9abd0a18c87c190d17d8de1b7",
+      "status": "included"
+    },
+    {
+      "bytes": 17082,
+      "filename": "evaluate_precedence_fixture.py",
+      "path": "evaluators/evaluate_precedence_fixture.py",
+      "sha256": "293b5272c412db718babec4e7620c7cf371f9e1ed15e926ae1904b0b9695552c",
+      "status": "included"
+    },
+    {
+      "bytes": 12312,
+      "filename": "evaluate_vaultghost_integration.py",
+      "path": "evaluators/evaluate_vaultghost_integration.py",
+      "sha256": "3c5320d3bfecfdb6b40b6648e0a5408d384284af378d64562b045ac0afc36891",
+      "status": "included"
+    },
+    {
+      "bytes": 12550,
+      "filename": "vaultghost_claim_splitting_fixtures_v0_1.yaml",
+      "path": "fixtures/vaultghost_claim_splitting_fixtures_v0_1.yaml",
+      "sha256": "0c4a7cb2c2619c43b1e19dc2b41d480fbbc9bac053f53760ed4594385a49645a",
+      "status": "included"
+    },
+    {
+      "bytes": 12272,
+      "filename": "vaultghost_integration_fixtures_v0_1.yaml",
+      "path": "fixtures/vaultghost_integration_fixtures_v0_1.yaml",
+      "sha256": "77cc22471be0826783b40996fe7c090fe872e03dff1a5fc0feab239aa113a0e9",
+      "status": "included"
+    },
+    {
+      "bytes": 14464,
+      "filename": "vaultghost_legal_bucket_fixtures_v0_1.yaml",
+      "path": "fixtures/vaultghost_legal_bucket_fixtures_v0_1.yaml",
+      "sha256": "d382a9a64d48742ff188c18e0d7a35ba55f50207b3936e64f59efd0a40c570a2",
+      "status": "included"
+    },
+    {
+      "bytes": 16650,
+      "filename": "vaultghost_precedence_fixtures_v0_1.yaml",
+      "path": "fixtures/vaultghost_precedence_fixtures_v0_1.yaml",
+      "sha256": "ccd2ed4bc5a14240167cb6609722c96d185c127847a0ebdcc813cc4c4cd68565",
+      "status": "included"
+    },
+    {
+      "bytes": 267,
+      "filename": "pyproject.toml",
+      "path": "pyproject.toml",
+      "sha256": "5769d0138676e624fee5994736bf42ef6d20c4b21f952cf3a5cec2b51741e013",
+      "status": "included"
+    },
+    {
+      "bytes": 4194,
+      "filename": "bucket_fixture.schema.json",
+      "path": "schemas/bucket_fixture.schema.json",
+      "sha256": "dbd2b52b84a77697d620ca70d0276a874931e4a1f0b5051380677f7a693c57c6",
+      "status": "included"
+    },
+    {
+      "bytes": 1465,
+      "filename": "claim_splitting_fixture.schema.json",
+      "path": "schemas/claim_splitting_fixture.schema.json",
+      "sha256": "5a486d0573dd02454fda8261d1db569d634df460ce01af40583886d887d7785b",
+      "status": "included"
+    },
+    {
+      "bytes": 1965,
+      "filename": "final_claim_packet.schema.json",
+      "path": "schemas/final_claim_packet.schema.json",
+      "sha256": "ce94837548bf6d0238c9e4662f6d22594e12d604b33e4ec79a448af20b92c6e1",
+      "status": "included"
+    },
+    {
+      "bytes": 1771,
+      "filename": "integration_fixture.schema.json",
+      "path": "schemas/integration_fixture.schema.json",
+      "sha256": "0fe9337cb73aa992872c312b49a13a1dd6c86ea4fe255941b2ea28e08eec003b",
+      "status": "included"
+    },
+    {
+      "bytes": 4650,
+      "filename": "precedence_fixture.schema.json",
+      "path": "schemas/precedence_fixture.schema.json",
+      "sha256": "c1fb83a9848c57be8fae5404364bb450cdb9a51b8220bda1bf07732dfc9cbc2d",
+      "status": "included"
+    },
+    {
+      "bytes": 2244,
+      "filename": "release_manifest.schema.json",
+      "path": "schemas/release_manifest.schema.json",
+      "sha256": "90e8888ac094865fbc4317f88e65388bc97545299289568ac4795ba73881327e",
+      "status": "included"
+    },
+    {
+      "bytes": 3780,
+      "filename": "run_all_checks_local_v0_1_1.py",
+      "path": "tools/run_all_checks_local_v0_1_1.py",
+      "sha256": "62f598e02534b235d3d7350d05940be3bd923ce411d7c828385f5bf4c28037f4",
+      "status": "included"
+    },
+    {
+      "bytes": 3839,
+      "filename": "validate_all_schemas.py",
+      "path": "tools/validate_all_schemas.py",
+      "sha256": "f3adb42cccd18ea4e986285bc4a3b076cf86a30d902e5269228b0e66b4121a93",
+      "status": "included"
+    },
+    {
+      "bytes": 9575,
+      "filename": "verify_release_manifest.py",
+      "path": "tools/verify_release_manifest.py",
+      "sha256": "8d7c23db81695f97421fa2470654e4d81df6ac16417a697dad4c66cbb262cdfa",
+      "status": "included"
+    }
+  ],
+  "created_at": "2026-06-02T00:00:00Z",
+  "manifest_id": "VG-PUBLIC-RELEASE-MANIFEST-v0.1.1",
+  "protocol": "VaultGhost",
+  "status": "release_hardened",
+  "version": "0.1.1"
+}

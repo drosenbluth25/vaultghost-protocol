@@ -1,0 +1,167 @@
+{
+  "$id": "https://vaultghost.local/schemas/bucket_fixture.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "artifact_type": {
+      "type": "string"
+    },
+    "default_bucket": {
+      "type": "string"
+    },
+    "fixtures": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "claim": {
+            "additionalProperties": true,
+            "properties": {
+              "asserted_as": {
+                "type": "string"
+              },
+              "claim_text": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "claim_type": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "claim_text"
+            ],
+            "type": "object"
+          },
+          "dominant_rule": {
+            "type": "string"
+          },
+          "evidence_objects": {
+            "items": {
+              "additionalProperties": true,
+              "properties": {
+                "access_status": {
+                  "type": "string"
+                },
+                "evidence_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "limitations": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "provenance_status": {
+                  "type": "string"
+                },
+                "relation_to_claim": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source_tier": {
+                  "type": [
+                    "integer",
+                    "number",
+                    "string"
+                  ]
+                },
+                "source_type": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "supports_exact_claim": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "evidence_id",
+                "source_type",
+                "relation_to_claim"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "expected_result": {
+            "additionalProperties": true,
+            "properties": {
+              "expected_bucket": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "expected_limitations": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "expected_transition_reason": {
+                "type": "string"
+              },
+              "legal_conclusion_blocked": {
+                "type": "boolean"
+              },
+              "support_strength": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "expected_bucket"
+            ],
+            "type": "object"
+          },
+          "expected_rule_path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "fixture_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "must_not_return": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "starting_bucket": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fixture_id",
+          "name",
+          "claim",
+          "evidence_objects",
+          "expected_result"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "suite_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "version": {
+      "type": [
+        "string",
+        "number"
+      ]
+    }
+  },
+  "required": [
+    "suite_id",
+    "fixtures"
+  ],
+  "title": "VaultGhost Bucket Fixture Suite",
+  "type": "object"
+}

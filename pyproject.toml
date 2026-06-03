@@ -1,0 +1,13 @@
+[project]
+name = "vaultghost-protocol"
+version = "0.1.1"
+description = "Release-hardened legal-adjacent claim-governance protocol skeleton"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pyyaml",
+  "jsonschema"
+]
+
+[tool.setuptools]
+packages = []

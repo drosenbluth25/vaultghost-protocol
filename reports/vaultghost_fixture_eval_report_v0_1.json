@@ -1,0 +1,196 @@
+{
+  "check_limitations": true,
+  "failed": 0,
+  "failures": [],
+  "pass_items": [
+    {
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-FIXTURE-001",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "No court order, docket entry, transcript, or attorney confirmation supplied.",
+        "AI-generated source cannot verify the claim."
+      ],
+      "name": "Correct claim with fake citation",
+      "rule_path": [
+        "fabricated_or_invalid_source_block",
+        "fallback_quarantine"
+      ],
+      "support_strength": "none"
+    },
+    {
+      "computed_bucket": "USER_ORIGINATED",
+      "expected_bucket": "USER_ORIGINATED",
+      "fixture_id": "VG-FIXTURE-002",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "User account is tracked but not externally verified."
+      ],
+      "name": "User statement only",
+      "rule_path": [
+        "user_firsthand_statement_check",
+        "user_originated_ceiling_check"
+      ],
+      "support_strength": "tracked_not_verified"
+    },
+    {
+      "computed_bucket": "PROVISIONALLY_VERIFIED",
+      "expected_bucket": "PROVISIONALLY_VERIFIED",
+      "fixture_id": "VG-FIXTURE-003",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Supported by attorney communication, not primary court record."
+      ],
+      "name": "Attorney email supports procedural fact",
+      "rule_path": [
+        "direct_but_caveated_support_check",
+        "tier_2_source_ceiling_check"
+      ],
+      "support_strength": "moderate_strong"
+    },
+    {
+      "computed_bucket": "VERIFIED",
+      "expected_bucket": "VERIFIED",
+      "fixture_id": "VG-FIXTURE-004",
+      "legal_conclusion_blocked": false,
+      "limitations": [],
+      "name": "Court docket confirms filing date",
+      "rule_path": [
+        "exact_direct_primary_support_check",
+        "no_material_conflict_check",
+        "verified_assignment"
+      ],
+      "support_strength": "strong"
+    },
+    {
+      "computed_bucket": "PROVISIONALLY_VERIFIED",
+      "expected_bucket": "PROVISIONALLY_VERIFIED",
+      "fixture_id": "VG-FIXTURE-005",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Payment is supported by screenshot but not official receipt."
+      ],
+      "name": "Screenshot shows payment without official receipt",
+      "rule_path": [
+        "direct_but_caveated_support_check",
+        "provenance_ceiling_check"
+      ],
+      "support_strength": "moderate"
+    },
+    {
+      "computed_bucket": "INFERRED",
+      "expected_bucket": "INFERRED",
+      "fixture_id": "VG-FIXTURE-006",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Document fact may be verified separately.",
+        "Legal conclusion is not directly stated by court or counsel."
+      ],
+      "name": "Real document with overreaching legal inference",
+      "rule_path": [
+        "legal_conclusion_block",
+        "source_scope_limit_check",
+        "indirect_support_check"
+      ],
+      "support_strength": "weak"
+    },
+    {
+      "computed_bucket": "CONTRADICTED",
+      "expected_bucket": "CONTRADICTED",
+      "fixture_id": "VG-FIXTURE-007",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Attorney email and official docket conflict on hearing date."
+      ],
+      "name": "Two records conflict on date",
+      "rule_path": [
+        "material_contradiction_check",
+        "stronger_source_resolution_check",
+        "contradicted_assignment"
+      ],
+      "support_strength": "conflicted"
+    },
+    {
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-FIXTURE-008",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "AI memory cannot independently verify the claim."
+      ],
+      "name": "AI prior memory only",
+      "rule_path": [
+        "ai_memory_cannot_verify_check",
+        "fallback_quarantine"
+      ],
+      "support_strength": "weak"
+    },
+    {
+      "computed_bucket": "PROVISIONALLY_VERIFIED",
+      "expected_bucket": "PROVISIONALLY_VERIFIED",
+      "fixture_id": "VG-FIXTURE-009",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Primary source appears to support the claim, but OCR/provenance uncertainty bars VERIFIED."
+      ],
+      "name": "OCR uncertainty in scanned PDF",
+      "rule_path": [
+        "direct_but_caveated_support_check",
+        "provenance_ceiling_check"
+      ],
+      "support_strength": "moderate_strong"
+    },
+    {
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-FIXTURE-010",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Motive and intent are not directly supported by the invoice."
+      ],
+      "name": "Unsupported motive claim",
+      "rule_path": [
+        "motive_intent_accusation_block",
+        "fallback_quarantine"
+      ],
+      "support_strength": "none"
+    },
+    {
+      "computed_bucket": "VERIFIED",
+      "expected_bucket": "VERIFIED",
+      "fixture_id": "VG-FIXTURE-011",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Verified only as to attempted service event, not legal sufficiency of service."
+      ],
+      "name": "Process-server affidavit confirms service attempt",
+      "rule_path": [
+        "exact_direct_support_check",
+        "tier_2_event_fact_verification_exception",
+        "legal_sufficiency_split_check"
+      ],
+      "support_strength": "strong"
+    },
+    {
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-FIXTURE-012",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Referenced attachment is missing.",
+        "No available source directly supports the exact claim."
+      ],
+      "name": "Missing attachment referenced in email",
+      "rule_path": [
+        "missing_source_block",
+        "fallback_quarantine"
+      ],
+      "support_strength": "weak"
+    }
+  ],
+  "passed": 12,
+  "strict": true,
+  "suite_id": "VG-LEGAL-BUCKET-FIXTURES-v0.1",
+  "version": "0.1"
+}

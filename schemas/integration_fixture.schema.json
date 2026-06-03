@@ -1,0 +1,81 @@
+{
+  "$id": "https://vaultghost.local/schemas/integration_fixture.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "artifact_type": {
+      "type": "string"
+    },
+    "fixtures": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "evidence_bindings": {
+            "type": [
+              "array",
+              "object"
+            ]
+          },
+          "expected_atomic_claims": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "expected_claim_records": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "expected_packet_invariants": {
+            "type": [
+              "object",
+              "array"
+            ]
+          },
+          "expected_splitter_rule_path": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "fixture_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "raw_statement": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fixture_id",
+          "name"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "suite_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "version": {
+      "type": [
+        "string",
+        "number"
+      ]
+    }
+  },
+  "required": [
+    "suite_id",
+    "fixtures"
+  ],
+  "title": "VaultGhost End-to-End Integration Fixture Suite",
+  "type": "object"
+}

@@ -1,0 +1,228 @@
+{
+  "check_limitations": true,
+  "failed": 0,
+  "failures": [],
+  "passed": 12,
+  "passes": [
+    {
+      "collision_type": "positive_support_vs_contradiction",
+      "computed_bucket": "CONTRADICTED",
+      "expected_bucket": "CONTRADICTED",
+      "fixture_id": "VG-PRECEDENCE-001",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Direct support exists, but reliable stronger evidence materially conflicts with the claim."
+      ],
+      "name": "Primary support plus stronger contradiction",
+      "rule_path": [
+        "material_contradiction_check",
+        "contradiction_outranks_positive_support",
+        "contradicted_assignment"
+      ],
+      "support_strength": "conflicted",
+      "transition_reason": "Material contradiction outranks positive support."
+    },
+    {
+      "collision_type": "primary_support_vs_primary_contradiction",
+      "computed_bucket": "CONTRADICTED",
+      "expected_bucket": "CONTRADICTED",
+      "fixture_id": "VG-PRECEDENCE-002",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Equal-tier authoritative evidence conflicts on the procedural status."
+      ],
+      "name": "Official order support plus equal authoritative contradiction",
+      "rule_path": [
+        "material_contradiction_check",
+        "equal_authoritative_conflict_check",
+        "contradicted_assignment"
+      ],
+      "support_strength": "conflicted",
+      "transition_reason": "Equal authoritative contradiction prevents verification."
+    },
+    {
+      "collision_type": "tier2_support_vs_missing_primary_source",
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-PRECEDENCE-003",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Missing referenced primary source cannot verify the claim."
+      ],
+      "name": "Attorney email references missing docket",
+      "rule_path": [
+        "missing_source_block",
+        "missing_primary_source_outranks_context",
+        "fallback_quarantine"
+      ],
+      "support_strength": "weak",
+      "transition_reason": "Missing source block outranks tier-2 contextual support."
+    },
+    {
+      "collision_type": "primary_caveat_vs_legal_conclusion",
+      "computed_bucket": "INFERRED",
+      "expected_bucket": "INFERRED",
+      "fixture_id": "VG-PRECEDENCE-004",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Court order may support a document fact, but the legal conclusion is only indirectly supported and OCR-caveated."
+      ],
+      "name": "OCR-damaged court order plus legal inference",
+      "rule_path": [
+        "legal_conclusion_block",
+        "source_scope_limit_check",
+        "indirect_support_check"
+      ],
+      "support_strength": "weak",
+      "transition_reason": "Legal conclusion block prevents inherited verification from damaged document."
+    },
+    {
+      "collision_type": "manual_override_vs_verification_standard",
+      "computed_bucket": "USER_ORIGINATED",
+      "expected_bucket": "USER_ORIGINATED",
+      "fixture_id": "VG-PRECEDENCE-005",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Manual override cannot mark VERIFIED without reliable direct evidence."
+      ],
+      "name": "Manual override attempts VERIFIED without direct evidence",
+      "rule_path": [
+        "manual_override_validation_check",
+        "verified_override_denied",
+        "user_firsthand_statement_check",
+        "user_originated_ceiling_check"
+      ],
+      "support_strength": "tracked_not_verified",
+      "transition_reason": "Manual override is rejected; user statement remains user-originated."
+    },
+    {
+      "collision_type": "user_originated_plus_indirect_support",
+      "computed_bucket": "INFERRED",
+      "expected_bucket": "INFERRED",
+      "fixture_id": "VG-PRECEDENCE-006",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "External material weakly corroborates plausibility but does not directly verify the exact claim."
+      ],
+      "name": "User statement with weak corroboration upgrades only to INFERRED",
+      "rule_path": [
+        "user_corroboration_check",
+        "indirect_support_present",
+        "inferred_assignment"
+      ],
+      "support_strength": "weak",
+      "transition_reason": "User-originated claim with indirect corroboration upgrades only to INFERRED."
+    },
+    {
+      "collision_type": "mixed_direct_support_tiers",
+      "computed_bucket": "VERIFIED",
+      "expected_bucket": "VERIFIED",
+      "fixture_id": "VG-PRECEDENCE-007",
+      "legal_conclusion_blocked": false,
+      "limitations": [],
+      "name": "Mixed evidence tiers choose strongest direct official source",
+      "rule_path": [
+        "direct_support_check",
+        "strongest_source_resolution_check",
+        "exact_direct_primary_support_check",
+        "verified_assignment"
+      ],
+      "support_strength": "strong",
+      "transition_reason": "Strongest direct official source satisfies verification standard."
+    },
+    {
+      "collision_type": "real_document_vs_motive_claim",
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-PRECEDENCE-008",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Real filing establishes existence of filing only, not motive or intent."
+      ],
+      "name": "Motive inference attached to real filing",
+      "rule_path": [
+        "motive_intent_accusation_block",
+        "source_scope_limit_check",
+        "fallback_quarantine"
+      ],
+      "support_strength": "none",
+      "transition_reason": "Motive claim cannot inherit verification from real filing."
+    },
+    {
+      "collision_type": "misleading_claim_type_vs_legal_substance",
+      "computed_bucket": "QUARANTINED",
+      "expected_bucket": "QUARANTINED",
+      "fixture_id": "VG-PRECEDENCE-009",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Claim is substantively a legal conclusion despite procedural phrasing."
+      ],
+      "name": "Legal conclusion phrased as procedural fact",
+      "rule_path": [
+        "legal_substance_detection_check",
+        "legal_conclusion_asserted_as_fact_block",
+        "fallback_quarantine"
+      ],
+      "support_strength": "weak",
+      "transition_reason": "Legal-substance detector blocks verification when legal conclusion is asserted as fact."
+    },
+    {
+      "collision_type": "tier2_event_exception_vs_legal_sufficiency",
+      "computed_bucket": "INFERRED",
+      "expected_bucket": "INFERRED",
+      "fixture_id": "VG-PRECEDENCE-010",
+      "legal_conclusion_blocked": true,
+      "limitations": [
+        "Tier-2 event exception does not extend to legal sufficiency conclusions."
+      ],
+      "name": "Tier-2 process-server exception cannot verify legal sufficiency",
+      "rule_path": [
+        "legal_conclusion_block",
+        "tier_2_event_exception_scope_check",
+        "indirect_support_check"
+      ],
+      "support_strength": "weak",
+      "transition_reason": "Official affidavit may support event fact only; legal sufficiency remains blocked."
+    },
+    {
+      "collision_type": "ai_context_plus_reliable_source",
+      "computed_bucket": "VERIFIED",
+      "expected_bucket": "VERIFIED",
+      "fixture_id": "VG-PRECEDENCE-011",
+      "legal_conclusion_blocked": false,
+      "limitations": [],
+      "name": "AI memory noise plus official direct source",
+      "rule_path": [
+        "ai_context_disregarded_for_verification",
+        "direct_support_check",
+        "exact_direct_primary_support_check",
+        "verified_assignment"
+      ],
+      "support_strength": "strong",
+      "transition_reason": "AI memory does not verify the claim, but official direct evidence independently does."
+    },
+    {
+      "collision_type": "primary_source_vs_provenance_caveat",
+      "computed_bucket": "PROVISIONALLY_VERIFIED",
+      "expected_bucket": "PROVISIONALLY_VERIFIED",
+      "fixture_id": "VG-PRECEDENCE-012",
+      "legal_conclusion_blocked": false,
+      "limitations": [
+        "Primary source appears to support the claim, but provenance/OCR uncertainty bars VERIFIED."
+      ],
+      "name": "Primary source with provenance uncertainty capped at provisional",
+      "rule_path": [
+        "direct_support_check",
+        "primary_source_caveat_check",
+        "provenance_ceiling_check",
+        "provisionally_verified_assignment"
+      ],
+      "support_strength": "moderate_strong",
+      "transition_reason": "Provenance ceiling outranks primary-source status."
+    }
+  ],
+  "strict": true,
+  "suite_id": "VG-PRECEDENCE-FIXTURES-v0.1",
+  "total": 12,
+  "version": "0.1"
+}

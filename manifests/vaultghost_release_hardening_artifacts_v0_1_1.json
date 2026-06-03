@@ -1,0 +1,9 @@
+{
+  "artifacts": [
+    "reports/SCHEMA_VALIDATION_REPORT_v0_1_1.json",
+    "reports/FULL_RELEASE_CHECK_REPORT_v0_1_1.json",
+    "reports/MANIFEST_VERIFY_REPORT_v0_1_1.json"
+  ],
+  "manifest_id": "VG-RELEASE-HARDENING-ARTIFACTS-v0.1.1",
+  "version": "0.1.1"
+}

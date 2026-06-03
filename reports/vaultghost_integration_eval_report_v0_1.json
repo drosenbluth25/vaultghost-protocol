@@ -1,0 +1,795 @@
+{
+  "failed": 0,
+  "passed": 8,
+  "results": [
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-001",
+      "name": "Court order plus legal defect conclusion",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact",
+            "bucket_rule_path": [
+              "exact_direct_primary_support_check",
+              "no_material_conflict_check",
+              "verified_assignment"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-001-C1",
+            "claim_index": 1,
+            "claim_text": "The court issued an order on March 1, 2026.",
+            "claim_type": "document_fact",
+            "current_bucket": "VERIFIED",
+            "evidence_refs": [
+              "E-001-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [],
+            "parent_statement_id": "VG-E2E-FIXTURE-001",
+            "split_basis": "document_fact_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "strong",
+            "transition_reason": "Primary authoritative source directly supports the exact date claim with no material conflict."
+          },
+          {
+            "asserted_as": "legal_conclusion",
+            "bucket_rule_path": [
+              "legal_conclusion_block",
+              "source_scope_limit_check",
+              "indirect_support_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-001-C2",
+            "claim_index": 2,
+            "claim_text": "The foreclosure is legally defective.",
+            "claim_type": "legal_conclusion",
+            "current_bucket": "INFERRED",
+            "evidence_refs": [
+              "E-001-B"
+            ],
+            "flags": [
+              "legal_conclusion_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": true,
+            "limitations": [
+              "Document fact may be verified separately.",
+              "Legal conclusion is not directly stated by court or counsel."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-001",
+            "split_basis": "legal_conclusion_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "weak",
+            "transition_reason": "A source can verify only what it directly supports, not every inference built on top of it."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-001-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "The court issued an order on March 1, 2026, and the foreclosure is legally defective.",
+          "statement_id": "VG-E2E-FIXTURE-001"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "document_fact_legal_conclusion_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 1,
+          "bucket_counts": {
+            "INFERRED": 1,
+            "VERIFIED": 1
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-002",
+      "name": "Invoice event plus motive claim",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact",
+            "bucket_rule_path": [
+              "direct_but_caveated_support_check",
+              "provenance_ceiling_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-002-C1",
+            "claim_index": 1,
+            "claim_text": "The invoice was sent on April 5, 2026.",
+            "claim_type": "event_fact",
+            "current_bucket": "PROVISIONALLY_VERIFIED",
+            "evidence_refs": [
+              "E-002-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [
+              "Payment is supported by screenshot but not official receipt."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-002",
+            "split_basis": "observable_event_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "moderate",
+            "transition_reason": "Direct but caveated transactional artifact supports the claim; VERIFIED is barred by provenance limitation."
+          },
+          {
+            "asserted_as": "motive_intent_claim",
+            "bucket_rule_path": [
+              "motive_intent_accusation_block",
+              "fallback_quarantine"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-002-C2",
+            "claim_index": 2,
+            "claim_text": "The sender intended to pressure the client.",
+            "claim_type": "motive_intent_claim",
+            "current_bucket": "QUARANTINED",
+            "evidence_refs": [
+              "E-002-B"
+            ],
+            "flags": [
+              "motive_intent_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": true,
+            "limitations": [
+              "Motive and intent are not directly supported by the invoice."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-002",
+            "split_basis": "motive_intent_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "none",
+            "transition_reason": "Unsupported accusatory or motive-based claim must be quarantined."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-002-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "The invoice was sent on April 5, 2026, and the sender intended to pressure the client.",
+          "statement_id": "VG-E2E-FIXTURE-002"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "motive_intent_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 1,
+          "bucket_counts": {
+            "PROVISIONALLY_VERIFIED": 1,
+            "QUARANTINED": 1
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-003",
+      "name": "Attorney statement plus downstream legal consequence",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact_about_statement",
+            "bucket_rule_path": [
+              "direct_but_caveated_support_check",
+              "tier_2_source_ceiling_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-003-C1",
+            "claim_index": 1,
+            "claim_text": "Counsel stated the foreclosure matter was adjourned pending probate.",
+            "claim_type": "attorney_statement_fact",
+            "current_bucket": "PROVISIONALLY_VERIFIED",
+            "evidence_refs": [
+              "E-003-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [
+              "Supported by attorney communication, not primary court record."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-003",
+            "split_basis": "attribution_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "moderate_strong",
+            "transition_reason": "Secondary or near-primary source directly supports the exact claim with caveats."
+          },
+          {
+            "asserted_as": "legal_conclusion",
+            "bucket_rule_path": [
+              "legal_conclusion_block",
+              "source_scope_limit_check",
+              "indirect_support_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-003-C2",
+            "claim_index": 2,
+            "claim_text": "Selene cannot proceed.",
+            "claim_type": "legal_conclusion",
+            "current_bucket": "INFERRED",
+            "evidence_refs": [
+              "E-003-B"
+            ],
+            "flags": [
+              "legal_conclusion_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": true,
+            "limitations": [
+              "Document fact may be verified separately.",
+              "Legal conclusion is not directly stated by court or counsel."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-003",
+            "split_basis": "legal_consequence_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "weak",
+            "transition_reason": "A source can verify only what it directly supports, not every inference built on top of it."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-003-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "Counsel stated the foreclosure matter was adjourned pending probate, which means Selene cannot proceed.",
+          "statement_id": "VG-E2E-FIXTURE-003"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "attribution_underlying_claim_split",
+            "document_fact_legal_conclusion_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 1,
+          "bucket_counts": {
+            "INFERRED": 1,
+            "PROVISIONALLY_VERIFIED": 1
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-004",
+      "name": "Conflicting hearing date claims",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact_about_source",
+            "bucket_rule_path": [
+              "material_contradiction_check",
+              "stronger_source_resolution_check",
+              "contradicted_assignment"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-004-C1",
+            "claim_index": 1,
+            "claim_text": "The attorney email says the hearing occurred on March 12, 2026.",
+            "claim_type": "date_fact",
+            "current_bucket": "CONTRADICTED",
+            "evidence_refs": [
+              "E-004-A",
+              "E-004-B"
+            ],
+            "flags": [
+              "contradiction_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [
+              "Attorney email and official docket conflict on hearing date."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-004",
+            "split_basis": "contradiction_side_a",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "conflicted",
+            "transition_reason": "Reliable evidence materially conflicts with the claim."
+          },
+          {
+            "asserted_as": "fact_about_source",
+            "bucket_rule_path": [
+              "exact_direct_primary_support_check",
+              "no_material_conflict_check",
+              "verified_assignment"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-004-C2",
+            "claim_index": 2,
+            "claim_text": "The docket lists March 13, 2026.",
+            "claim_type": "date_fact",
+            "current_bucket": "VERIFIED",
+            "evidence_refs": [
+              "E-004-B"
+            ],
+            "flags": [
+              "contradiction_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [],
+            "parent_statement_id": "VG-E2E-FIXTURE-004",
+            "split_basis": "contradiction_side_b",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "strong",
+            "transition_reason": "Primary authoritative source directly supports the exact date claim with no material conflict."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-004-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "The attorney email says the hearing occurred on March 12, 2026, but the docket lists March 13, 2026.",
+          "statement_id": "VG-E2E-FIXTURE-004"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "contradiction_pair_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 0,
+          "bucket_counts": {
+            "CONTRADICTED": 1,
+            "VERIFIED": 1
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-005",
+      "name": "Payment artifact plus filing completion inference",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact_about_artifact",
+            "bucket_rule_path": [
+              "direct_but_caveated_support_check",
+              "provenance_ceiling_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-005-C1",
+            "claim_index": 1,
+            "claim_text": "The screenshot shows payment received on February 25, 2026.",
+            "claim_type": "payment_fact",
+            "current_bucket": "PROVISIONALLY_VERIFIED",
+            "evidence_refs": [
+              "E-005-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [
+              "Payment is supported by screenshot but not official receipt."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-005",
+            "split_basis": "payment_fact_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "moderate",
+            "transition_reason": "Direct but caveated transactional artifact supports the claim; VERIFIED is barred by provenance limitation."
+          },
+          {
+            "asserted_as": "inference",
+            "bucket_rule_path": [
+              "indirect_support_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-005-C2",
+            "claim_index": 2,
+            "claim_text": "The filing was complete.",
+            "claim_type": "procedural_status",
+            "current_bucket": "INFERRED",
+            "evidence_refs": [
+              "E-005-B"
+            ],
+            "flags": [
+              "inference_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [
+              "Claim is plausible from evidence but not directly stated by a reliable source."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-005",
+            "split_basis": "procedural_inference_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "weak",
+            "transition_reason": "External material provides indirect support only."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-005-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "The screenshot shows payment received on February 25, 2026, proving the filing was complete.",
+          "statement_id": "VG-E2E-FIXTURE-005"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "document_fact_legal_conclusion_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 0,
+          "bucket_counts": {
+            "INFERRED": 1,
+            "PROVISIONALLY_VERIFIED": 1
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-006",
+      "name": "Service attempt plus legal sufficiency conclusion",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact",
+            "bucket_rule_path": [
+              "exact_direct_support_check",
+              "tier_2_event_fact_verification_exception",
+              "legal_sufficiency_split_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-006-C1",
+            "claim_index": 1,
+            "claim_text": "The process server attempted service once.",
+            "claim_type": "event_fact",
+            "current_bucket": "VERIFIED",
+            "evidence_refs": [
+              "E-006-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [
+              "Verified only as to attempted service event, not legal sufficiency of service."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-006",
+            "split_basis": "event_fact_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "strong",
+            "transition_reason": "Official affidavit directly supports the narrow event fact; legal conclusions remain separate."
+          },
+          {
+            "asserted_as": "legal_conclusion",
+            "bucket_rule_path": [
+              "legal_conclusion_block",
+              "source_scope_limit_check",
+              "indirect_support_check"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-006-C2",
+            "claim_index": 2,
+            "claim_text": "Service was legally sufficient.",
+            "claim_type": "legal_conclusion",
+            "current_bucket": "INFERRED",
+            "evidence_refs": [
+              "E-006-B"
+            ],
+            "flags": [
+              "legal_conclusion_candidate",
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": true,
+            "limitations": [
+              "Document fact may be verified separately.",
+              "Legal conclusion is not directly stated by court or counsel."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-006",
+            "split_basis": "legal_conclusion_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "weak",
+            "transition_reason": "A source can verify only what it directly supports, not every inference built on top of it."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-006-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "The process server attempted service once, so service was legally sufficient.",
+          "statement_id": "VG-E2E-FIXTURE-006"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "document_fact_legal_conclusion_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 1,
+          "bucket_counts": {
+            "INFERRED": 1,
+            "VERIFIED": 1
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-007",
+      "name": "Missing attachment reference plus halted proceeding claim",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact_about_artifact",
+            "bucket_rule_path": [
+              "missing_source_block",
+              "fallback_quarantine"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-007-C1",
+            "claim_index": 1,
+            "claim_text": "The email references an attached order.",
+            "claim_type": "document_fact",
+            "current_bucket": "QUARANTINED",
+            "evidence_refs": [
+              "E-007-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": true,
+            "limitations": [
+              "Referenced attachment is missing.",
+              "No available source directly supports the exact claim."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-007",
+            "split_basis": "document_reference_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "weak",
+            "transition_reason": "A missing referenced attachment cannot verify the claim."
+          },
+          {
+            "asserted_as": "fact",
+            "bucket_rule_path": [
+              "missing_source_block",
+              "fallback_quarantine"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-007-C2",
+            "claim_index": 2,
+            "claim_text": "The order halted the foreclosure proceeding.",
+            "claim_type": "procedural_status",
+            "current_bucket": "QUARANTINED",
+            "evidence_refs": [
+              "E-007-B"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": true,
+            "limitations": [
+              "Referenced attachment is missing.",
+              "No available source directly supports the exact claim."
+            ],
+            "parent_statement_id": "VG-E2E-FIXTURE-007",
+            "split_basis": "procedural_status_component",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "weak",
+            "transition_reason": "A missing referenced attachment cannot verify the claim."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-007-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "The email references an attached order, and the order halted the foreclosure proceeding.",
+          "statement_id": "VG-E2E-FIXTURE-007"
+        },
+        "split_stage": {
+          "atomic_claim_count": 2,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "document_fact_legal_conclusion_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 2,
+          "bucket_counts": {
+            "QUARANTINED": 2
+          },
+          "claim_count": 2
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    },
+    {
+      "errors": [],
+      "fixture_id": "VG-E2E-FIXTURE-008",
+      "name": "Already atomic filing date claim",
+      "packet": {
+        "bucket_stage": {
+          "boundary": "bucket_engine_assumes_atomic_claims",
+          "bucket_engine_version": "0.1"
+        },
+        "claim_records": [
+          {
+            "asserted_as": "fact",
+            "bucket_rule_path": [
+              "exact_direct_primary_support_check",
+              "no_material_conflict_check",
+              "verified_assignment"
+            ],
+            "claim_id": "VG-E2E-FIXTURE-008-C1",
+            "claim_index": 1,
+            "claim_text": "A petition was filed on February 25, 2026.",
+            "claim_type": "date_fact",
+            "current_bucket": "VERIFIED",
+            "evidence_refs": [
+              "E-008-A"
+            ],
+            "flags": [
+              "bucket_eval_required"
+            ],
+            "legal_conclusion_blocked": false,
+            "limitations": [],
+            "parent_statement_id": "VG-E2E-FIXTURE-008",
+            "split_basis": "already_atomic",
+            "starting_bucket": "QUARANTINED",
+            "support_strength": "strong",
+            "transition_reason": "Primary authoritative source directly supports the exact date claim with no material conflict."
+          }
+        ],
+        "packet_id": "VG-E2E-FIXTURE-008-PACKET",
+        "packet_invariants": {
+          "all_claims_started_quarantined": true,
+          "bucket_engine_received_only_atomic_claims": true,
+          "legal_conclusions_do_not_inherit_verification": true,
+          "missing_sources_do_not_inherit_verification": true,
+          "motive_claims_do_not_inherit_event_verification": true,
+          "splitter_assigned_no_final_buckets": true
+        },
+        "protocol": "VaultGhost End-to-End Claim Governance Packet",
+        "source_statement": {
+          "raw_statement": "A petition was filed on February 25, 2026.",
+          "statement_id": "VG-E2E-FIXTURE-008"
+        },
+        "split_stage": {
+          "atomic_claim_count": 1,
+          "boundary": "splitter_emits_starting_bucket_only",
+          "split_rule_path": [
+            "single_atomic_no_split",
+            "emit_atomic_claims"
+          ],
+          "splitter_version": "0.1"
+        },
+        "summary": {
+          "blocked_legal_conclusion_count": 0,
+          "bucket_counts": {
+            "VERIFIED": 1
+          },
+          "claim_count": 1
+        },
+        "version": "0.1"
+      },
+      "passed": true
+    }
+  ],
+  "strict": true,
+  "suite_id": "VG-END-TO-END-FIXTURES-v0.1",
+  "version": "0.1"
+}

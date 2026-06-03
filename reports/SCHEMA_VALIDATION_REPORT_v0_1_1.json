@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-06-03T06:11:36.515839Z",
+  "entries": [
+    {
+      "error": null,
+      "file": "fixtures/vaultghost_claim_splitting_fixtures_v0_1.yaml",
+      "required": true,
+      "schema": "schemas/claim_splitting_fixture.schema.json",
+      "status": "PASS"
+    },
+    {
+      "error": null,
+      "file": "fixtures/vaultghost_legal_bucket_fixtures_v0_1.yaml",
+      "required": true,
+      "schema": "schemas/bucket_fixture.schema.json",
+      "status": "PASS"
+    },
+    {
+      "error": null,
+      "file": "fixtures/vaultghost_integration_fixtures_v0_1.yaml",
+      "required": true,
+      "schema": "schemas/integration_fixture.schema.json",
+      "status": "PASS"
+    },
+    {
+      "error": null,
+      "file": "fixtures/vaultghost_precedence_fixtures_v0_1.yaml",
+      "required": true,
+      "schema": "schemas/precedence_fixture.schema.json",
+      "status": "PASS"
+    }
+  ],
+  "overall_status": "PASS",
+  "report_id": "VG-SCHEMA-VALIDATION-REPORT-v0.1.1",
+  "root": "/home/ubuntu/vaultghost-protocol",
+  "summary": {
+    "required_failed": 0,
+    "required_passed": 4,
+    "required_total": 4,
+    "total": 4
+  }
+}

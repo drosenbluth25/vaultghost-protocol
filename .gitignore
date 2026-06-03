@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+private_redacted_real_case_fixtures/
+*.log

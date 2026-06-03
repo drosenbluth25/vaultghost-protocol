@@ -1,0 +1,716 @@
+{
+  "suite_id": "VG-CLAIM-SPLIT-FIXTURES-v0.1",
+  "version": "0.1",
+  "strict": true,
+  "total": 12,
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-001",
+      "name": "Court order plus legal defect conclusion",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The court issued an order on March 1, 2026.",
+          "claim_type": "document_fact",
+          "asserted_as": "fact",
+          "split_basis": "document_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The foreclosure is legally defective.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_conclusion_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The court issued an order on March 1, 2026.",
+          "claim_type": "document_fact",
+          "asserted_as": "fact",
+          "split_basis": "document_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The foreclosure is legally defective.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_conclusion_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-002",
+      "name": "Invoice event plus intent claim",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "motive_intent_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "motive_intent_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The invoice was sent on April 5, 2026.",
+          "claim_type": "event_fact",
+          "asserted_as": "fact",
+          "split_basis": "observable_event_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The sender intended to pressure the client.",
+          "claim_type": "motive_intent_claim",
+          "asserted_as": "motive_intent_claim",
+          "split_basis": "motive_intent_component",
+          "flags": [
+            "motive_intent_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The invoice was sent on April 5, 2026.",
+          "claim_type": "event_fact",
+          "asserted_as": "fact",
+          "split_basis": "observable_event_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The sender intended to pressure the client.",
+          "claim_type": "motive_intent_claim",
+          "asserted_as": "motive_intent_claim",
+          "split_basis": "motive_intent_component",
+          "flags": [
+            "motive_intent_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-003",
+      "name": "Attorney statement plus legal consequence",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "attribution_underlying_claim_split",
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "attribution_underlying_claim_split",
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "Counsel stated the foreclosure matter was adjourned pending probate.",
+          "claim_type": "attorney_statement_fact",
+          "asserted_as": "fact_about_statement",
+          "split_basis": "attribution_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "Selene cannot proceed.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_consequence_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "Counsel stated the foreclosure matter was adjourned pending probate.",
+          "claim_type": "attorney_statement_fact",
+          "asserted_as": "fact_about_statement",
+          "split_basis": "attribution_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "Selene cannot proceed.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_consequence_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-004",
+      "name": "Conflicting hearing dates",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "contradiction_pair_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "contradiction_pair_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The attorney email says the hearing occurred on March 12, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact_about_source",
+          "split_basis": "contradiction_side_a",
+          "flags": [
+            "contradiction_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The docket lists March 13, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact_about_source",
+          "split_basis": "contradiction_side_b",
+          "flags": [
+            "contradiction_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The attorney email says the hearing occurred on March 12, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact_about_source",
+          "split_basis": "contradiction_side_a",
+          "flags": [
+            "contradiction_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The docket lists March 13, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact_about_source",
+          "split_basis": "contradiction_side_b",
+          "flags": [
+            "contradiction_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-005",
+      "name": "Payment fact plus completion inference",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The screenshot shows payment received on February 25, 2026.",
+          "claim_type": "payment_fact",
+          "asserted_as": "fact_about_artifact",
+          "split_basis": "payment_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The filing was complete.",
+          "claim_type": "procedural_status",
+          "asserted_as": "inference",
+          "split_basis": "procedural_inference_component",
+          "flags": [
+            "inference_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The screenshot shows payment received on February 25, 2026.",
+          "claim_type": "payment_fact",
+          "asserted_as": "fact_about_artifact",
+          "split_basis": "payment_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The filing was complete.",
+          "claim_type": "procedural_status",
+          "asserted_as": "inference",
+          "split_basis": "procedural_inference_component",
+          "flags": [
+            "inference_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-006",
+      "name": "Service attempt plus legal sufficiency conclusion",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The process server attempted service once.",
+          "claim_type": "event_fact",
+          "asserted_as": "fact",
+          "split_basis": "event_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "Service was legally sufficient.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_conclusion_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The process server attempted service once.",
+          "claim_type": "event_fact",
+          "asserted_as": "fact",
+          "split_basis": "event_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "Service was legally sufficient.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_conclusion_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-007",
+      "name": "Court clerk statement plus procedural status",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "attribution_underlying_claim_split",
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "attribution_underlying_claim_split",
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The clerk confirmed Letters Testamentary were pending.",
+          "claim_type": "procedural_status",
+          "asserted_as": "fact_about_statement",
+          "split_basis": "attribution_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The estate could not move forward yet.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_consequence_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The clerk confirmed Letters Testamentary were pending.",
+          "claim_type": "procedural_status",
+          "asserted_as": "fact_about_statement",
+          "split_basis": "attribution_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The estate could not move forward yet.",
+          "claim_type": "legal_conclusion",
+          "asserted_as": "legal_conclusion",
+          "split_basis": "legal_consequence_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-008",
+      "name": "Missing attachment reference plus halted proceeding claim",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The email references an attached order.",
+          "claim_type": "document_fact",
+          "asserted_as": "fact_about_artifact",
+          "split_basis": "document_reference_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The order halted the foreclosure proceeding.",
+          "claim_type": "procedural_status",
+          "asserted_as": "fact",
+          "split_basis": "procedural_status_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The email references an attached order.",
+          "claim_type": "document_fact",
+          "asserted_as": "fact_about_artifact",
+          "split_basis": "document_reference_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The order halted the foreclosure proceeding.",
+          "claim_type": "procedural_status",
+          "asserted_as": "fact",
+          "split_basis": "procedural_status_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-009",
+      "name": "Filed pleading plus motive claim",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "motive_intent_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "motive_intent_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The pleading was filed on May 1, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact",
+          "split_basis": "filing_date_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The filing was deliberately timed to pressure the estate.",
+          "claim_type": "motive_intent_claim",
+          "asserted_as": "motive_intent_claim",
+          "split_basis": "motive_intent_component",
+          "flags": [
+            "motive_intent_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The pleading was filed on May 1, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact",
+          "split_basis": "filing_date_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The filing was deliberately timed to pressure the estate.",
+          "claim_type": "motive_intent_claim",
+          "asserted_as": "motive_intent_claim",
+          "split_basis": "motive_intent_component",
+          "flags": [
+            "motive_intent_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-010",
+      "name": "Misfile event plus causal delay inference",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "causal_inference_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "causal_inference_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The will was placed in the wrong file.",
+          "claim_type": "event_fact",
+          "asserted_as": "fact",
+          "split_basis": "event_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The executor appointment was delayed because the will was placed in the wrong file.",
+          "claim_type": "causal_inference",
+          "asserted_as": "causal_inference",
+          "split_basis": "causal_inference_component",
+          "flags": [
+            "inference_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The will was placed in the wrong file.",
+          "claim_type": "event_fact",
+          "asserted_as": "fact",
+          "split_basis": "event_fact_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The executor appointment was delayed because the will was placed in the wrong file.",
+          "claim_type": "causal_inference",
+          "asserted_as": "causal_inference",
+          "split_basis": "causal_inference_component",
+          "flags": [
+            "inference_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-011",
+      "name": "Judge statement plus legal effect",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "attribution_underlying_claim_split",
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "attribution_underlying_claim_split",
+        "document_fact_legal_conclusion_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "The judge said Daniel could move forward as executor.",
+          "claim_type": "user_account",
+          "asserted_as": "reported_statement",
+          "split_basis": "reported_statement_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The foreclosure was halted.",
+          "claim_type": "procedural_status",
+          "asserted_as": "legal_effect_inference",
+          "split_basis": "legal_effect_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "inference_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "The judge said Daniel could move forward as executor.",
+          "claim_type": "user_account",
+          "asserted_as": "reported_statement",
+          "split_basis": "reported_statement_component",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        },
+        {
+          "claim_text": "The foreclosure was halted.",
+          "claim_type": "procedural_status",
+          "asserted_as": "legal_effect_inference",
+          "split_basis": "legal_effect_component",
+          "flags": [
+            "legal_conclusion_candidate",
+            "inference_candidate",
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    },
+    {
+      "fixture_id": "VG-SPLIT-FIXTURE-012",
+      "name": "Already atomic filing date claim",
+      "passed": true,
+      "failures": [],
+      "computed_rule_path": [
+        "single_atomic_no_split",
+        "emit_atomic_claims"
+      ],
+      "expected_rule_path": [
+        "single_atomic_no_split",
+        "emit_atomic_claims"
+      ],
+      "computed_atomic_claims": [
+        {
+          "claim_text": "A petition was filed on February 25, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact",
+          "split_basis": "already_atomic",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ],
+      "expected_atomic_claims": [
+        {
+          "claim_text": "A petition was filed on February 25, 2026.",
+          "claim_type": "date_fact",
+          "asserted_as": "fact",
+          "split_basis": "already_atomic",
+          "flags": [
+            "bucket_eval_required"
+          ],
+          "starting_bucket": "QUARANTINED"
+        }
+      ]
+    }
+  ]
+}
