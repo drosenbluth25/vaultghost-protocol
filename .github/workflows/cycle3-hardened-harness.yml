@@ -1,0 +1,90 @@
+name: Cycle 3 Hardened Harness
+
+on:
+  push:
+    branches:
+      - cycle3-hardened-harness
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cycle3:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Materialize Cycle 3 artifacts
+        run: python tools/materialize_cycle3_artifacts.py
+      - name: Install pytest
+        run: python -m pip install --upgrade pip pytest
+      - name: Run pytest with logs
+        run: |
+          mkdir -p test-logs
+          python -m pytest tests/ -v --tb=short --junitxml=test-logs/cycle3_execution_report.xml 2>&1 | tee test-logs/cycle3_pytest_terminal_output.txt
+      - name: Verify hardened test evidence
+        run: |
+          python - <<'PY'
+          import re
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          terminal = Path("test-logs/cycle3_pytest_terminal_output.txt").read_text(errors="replace")
+          if "/mnt/data/" in terminal or "/mnt/agents/" in terminal:
+              raise SystemExit("FAIL: sandbox path detected in pytest terminal output")
+          tree = ET.parse("test-logs/cycle3_execution_report.xml")
+          root = tree.getroot()
+          tests = int(root.attrib.get("tests", 0))
+          failures = int(root.attrib.get("failures", 0))
+          errors = int(root.attrib.get("errors", 0))
+          skipped = int(root.attrib.get("skipped", 0))
+          if tests < 23:
+              raise SystemExit(f"FAIL: only {tests} tests ran, expected at least 23")
+          if failures or errors:
+              raise SystemExit(f"FAIL: failures={failures}, errors={errors}")
+          names = {re.sub(r"\[.*\]$", "", case.attrib.get("name", "")) for case in root.iter("testcase")}
+          required = {
+              "test_all_negative_fixtures_are_materialized_and_routed",
+              "test_manifest_loads_list_format",
+              "test_all_29_fixtures_present",
+              "test_partial_record_is_malformed_text",
+              "test_context_required_without_context",
+              "test_generator_required_fixture_26",
+              "test_non_utc_timestamp_rejected",
+              "test_timestamp_regression_missing_context",
+              "test_timestamp_regression_detected_with_parsed_datetime",
+              "test_model_mismatch_voided",
+              "test_bac_model_profile_mismatch_fixture_19",
+              "test_bac_cross_session_fixture_20",
+              "test_partial_record_parse_error",
+          }
+          missing = required - names
+          if missing:
+              raise SystemExit("FAIL: required Cycle 3 tests did not execute: " + ", ".join(sorted(missing)))
+          print(f"ACCEPT: hardened Cycle 3 pytest XML contains required coverage test; tests={tests} failures={failures} errors={errors} skipped={skipped}")
+          PY
+      - name: Commit materialized artifacts and execution logs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vaultghost tests test-vectors docs test-logs
+          if git diff --cached --quiet; then
+            echo "No materialized artifact changes to commit."
+          else
+            git commit -m "Add Cycle 3 hardened verifier execution artifacts [skip ci]" -m "Cycle 3 verifier harness was physically materialized and pytest-executed.
+
+            The hardened harness routing layer passed the included pytest suite, including fixture-routing coverage for 28 JSON fixtures plus 1 malformed parse-checked fixture.
+
+            Full cryptographic verification, hash-chain recomputation, key registry, profile registry, RFC 8785 JCS, and hazard-index formalization remain open."
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cycle3-test-logs
+          path: test-logs/
