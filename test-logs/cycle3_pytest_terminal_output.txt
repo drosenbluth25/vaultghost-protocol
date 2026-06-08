@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.0.3, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.12.13/x64/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/vaultghost-protocol/vaultghost-protocol
+collecting ... collected 23 items
+
+tests/test_bac_checks.py::test_bac_model_profile_mismatch_fixture_19 PASSED [  4%]
+tests/test_bac_checks.py::test_bac_cross_session_fixture_20 PASSED       [  8%]
+tests/test_bac_checks.py::test_profile_superseded_fixture_24_missing_context PASSED [ 13%]
+tests/test_fixture_manifest.py::test_manifest_loads_list_format PASSED   [ 17%]
+tests/test_fixture_manifest.py::test_get_expected_for_fixture_missing_fails_closed PASSED [ 21%]
+tests/test_fixture_routing_coverage.py::test_all_negative_fixtures_are_materialized_and_routed PASSED [ 26%]
+tests/test_manifest_patch_ids.py::test_manifest_patch_ids_are_canonical PASSED [ 30%]
+tests/test_manifest_patch_ids.py::test_fixture_29_manifest_expected_result_is_parse_error PASSED [ 34%]
+tests/test_materialization.py::test_all_29_fixtures_present PASSED       [ 39%]
+tests/test_materialization.py::test_partial_record_is_malformed_text PASSED [ 43%]
+tests/test_signature_checks.py::test_raw_rs_signature_rejection PASSED   [ 47%]
+tests/test_signature_checks.py::test_double_hash_generator_required PASSED [ 52%]
+tests/test_state_checks.py::test_sealed_with_fault_rejected PASSED       [ 56%]
+tests/test_state_checks.py::test_voided_without_reason_rejected PASSED   [ 60%]
+tests/test_state_checks.py::test_fatal_anomaly_not_voided_rejected PASSED [ 65%]
+tests/test_time_checks.py::test_non_utc_timestamp_rejected PASSED        [ 69%]
+tests/test_time_checks.py::test_timestamp_regression_missing_context PASSED [ 73%]
+tests/test_time_checks.py::test_timestamp_regression_detected_with_parsed_datetime PASSED [ 78%]
+tests/test_verifier_routing.py::test_model_mismatch_voided PASSED        [ 82%]
+tests/test_verifier_routing.py::test_context_required_without_context PASSED [ 86%]
+tests/test_verifier_routing.py::test_generator_required_fixture_26 PASSED [ 91%]
+tests/test_verifier_routing.py::test_partial_record_parse_error PASSED   [ 95%]
+tests/test_verifier_routing.py::test_full_fixture_suite_routes_without_unexpected_errors PASSED [100%]
+
+- generated xml file: /home/runner/work/vaultghost-protocol/vaultghost-protocol/test-logs/cycle3_execution_report.xml -
+============================== 23 passed in 0.09s ==============================
