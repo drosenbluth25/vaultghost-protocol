@@ -40,10 +40,17 @@ jobs:
               raise SystemExit("FAIL: sandbox path detected in pytest terminal output")
           tree = ET.parse("test-logs/cycle3_execution_report.xml")
           root = tree.getroot()
-          tests = int(root.attrib.get("tests", 0))
-          failures = int(root.attrib.get("failures", 0))
-          errors = int(root.attrib.get("errors", 0))
-          skipped = int(root.attrib.get("skipped", 0))
+          suites = [root] if root.tag == "testsuite" else list(root.iter("testsuite"))
+
+          if not suites:
+              raise SystemExit(f"FAIL: no testsuite elements found in JUnit XML root={root.tag!r}")
+
+          tests = sum(int(s.attrib.get("tests", 0)) for s in suites)
+          failures = sum(int(s.attrib.get("failures", 0)) for s in suites)
+          errors = sum(int(s.attrib.get("errors", 0)) for s in suites)
+          skipped = sum(int(s.attrib.get("skipped", 0)) for s in suites)
+
+          print(f"JUnit XML root={root.tag}; suites={len(suites)}; tests={tests}; failures={failures}; errors={errors}; skipped={skipped}")
           if tests < 23:
               raise SystemExit(f"FAIL: only {tests} tests ran, expected at least 23")
           if failures or errors:
