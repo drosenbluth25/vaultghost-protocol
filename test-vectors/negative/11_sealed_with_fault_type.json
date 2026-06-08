@@ -1,0 +1,42 @@
+{
+  "packet_id": "00000000-0000-4000-8000-000000000011",
+  "packet_sequence": 11,
+  "timestamp_iso8601": "2026-06-08T12:00:11Z",
+  "session_id": "11111111-1111-4111-8111-111111111111",
+  "state": "SEALED",
+  "provider_binding_ref": "VG-BINDING-GENERIC-001",
+  "model_id_requested": "model-alpha",
+  "model_id_asserted_by_response": "model-alpha",
+  "key_id": "key-mut-001",
+  "role_id": "MUT",
+  "tee_counter": 1011,
+  "prior_packet_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "packet_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "anchor": {
+    "asserted": {
+      "system_fingerprint": "fp-current",
+      "fingerprint_prior": "fp-current"
+    },
+    "computed": {
+      "fingerprint_drifted": false
+    }
+  },
+  "vendor_reported": {
+    "token_delta": {
+      "input": 10,
+      "output": 20,
+      "reasoning": {
+        "present": false,
+        "count": null
+      }
+    }
+  },
+  "anomaly_flags": [],
+  "void_reason": null,
+  "fault_type": "CRITICAL_FAULT",
+  "retry_metadata": {
+    "attempt": 0,
+    "retry_after": null,
+    "backoff_ms": 0
+  }
+}

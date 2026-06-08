@@ -1,0 +1,437 @@
+[
+  {
+    "fixture": "01_legacy_model_id_confirmed.json",
+    "patch_ids": [
+      "VG-P-001"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-SCHEMA-FIELDNAME",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "02_model_id_mismatch_fatal.json",
+    "patch_ids": [
+      "VG-P-002"
+    ],
+    "layer": "ANOMALY",
+    "expected_result": "VOIDED",
+    "existing_error_code": "ANOMALY_MODEL_MISMATCH",
+    "proposed_error_code": null,
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "RATIFIED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "03_token_delta_trusted_top_level.json",
+    "patch_ids": [
+      "VG-P-003"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-SCHEMA-UNTRUSTED-TOKEN-DELTA",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "04_reasoning_absent_sentinel.json",
+    "patch_ids": [
+      "VG-P-004"
+    ],
+    "layer": "TOKEN_PRIVACY",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-TOKEN-SENTINEL",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "05_reasoning_content_leakage.json",
+    "patch_ids": [
+      "VG-P-004"
+    ],
+    "layer": "TOKEN_PRIVACY",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-REASONING-TOKEN-LEAK",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "06_fingerprint_drift_stored_false.json",
+    "patch_ids": [
+      "VG-P-005"
+    ],
+    "layer": "ANOMALY",
+    "expected_result": "REJECT",
+    "existing_error_code": "ANOMALY_FINGERPRINT_DRIFT",
+    "proposed_error_code": null,
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "RATIFIED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "07_gating_field_mutation.json",
+    "patch_ids": [
+      "VG-P-006"
+    ],
+    "layer": "HASH_CHAIN",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-HASH-MISMATCH",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "08_genesis_zero_prior_hash.json",
+    "patch_ids": [
+      "VG-P-007"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-GENESIS-INVALID",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "09_sequence_gap.json",
+    "patch_ids": [
+      "VG-P-008"
+    ],
+    "layer": "STATE",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-SEQUENCE-GAP",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "10_tee_counter_regression.json",
+    "patch_ids": [
+      "VG-P-008"
+    ],
+    "layer": "STATE",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-TEE-REGRESSION",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "11_sealed_with_fault_type.json",
+    "patch_ids": [
+      "VG-P-009"
+    ],
+    "layer": "STATE",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-STATE-CONSISTENCY",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "12_voided_without_reason.json",
+    "patch_ids": [
+      "VG-P-009"
+    ],
+    "layer": "STATE",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-STATE-CONSISTENCY",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "13_role_key_mismatch.json",
+    "patch_ids": [
+      "VG-P-010"
+    ],
+    "layer": "KEY_POLICY",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-ROLE-KEY-MISMATCH",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "14_key_collision.json",
+    "patch_ids": [
+      "VG-P-010"
+    ],
+    "layer": "KEY_POLICY",
+    "expected_result": "VOIDED",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-KEY-COLLISION",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "15_unknown_anomaly_flag.json",
+    "patch_ids": [
+      "VG-P-011"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-UNKNOWN-ANOMALY",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "16_fatal_anomaly_not_voided.json",
+    "patch_ids": [
+      "VG-P-012"
+    ],
+    "layer": "STATE",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-FATAL-NOT-VOIDED",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "17_confidence_boundary_ambiguity.json",
+    "patch_ids": [
+      "VG-P-013"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-CONFIDENCE-AMBIGUOUS",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "18_hazard_index_pre_oi003.json",
+    "patch_ids": [
+      "VG-P-014"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-HAZARD-INDEX-PRE-OI003",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "19_bac_model_profile_mismatch.json",
+    "patch_ids": [
+      "VG-P-015"
+    ],
+    "layer": "BAC",
+    "expected_result": "BAC_BLOCKED",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-BAC-MODEL-MISMATCH",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "20_bac_cross_session_chain.json",
+    "patch_ids": [
+      "VG-P-015"
+    ],
+    "layer": "BAC",
+    "expected_result": "BAC_BLOCKED",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-BAC-SESSION-MISMATCH",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "21_non_utc_timestamp.json",
+    "patch_ids": [
+      "VG-P-016"
+    ],
+    "layer": "TIME",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-TIMESTAMP-NON-UTC",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "22_timestamp_regression.json",
+    "patch_ids": [
+      "VG-P-016"
+    ],
+    "layer": "TIME",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-TIMESTAMP-REGRESSION",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "23_missing_provider_binding_ref.json",
+    "patch_ids": [
+      "VG-P-017"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-MISSING-BINDING-REF",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "24_profile_superseded_stale.json",
+    "patch_ids": [
+      "VG-P-018"
+    ],
+    "layer": "PROFILE",
+    "expected_result": "BAC_BLOCKED",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-BAC-PROFILE-SUPERSEDED",
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "25_raw_rs_signature.json",
+    "patch_ids": [
+      "LEGACY-SIG-303"
+    ],
+    "layer": "SIGNATURE",
+    "expected_result": "REJECT",
+    "existing_error_code": "VG-SIG-303",
+    "proposed_error_code": null,
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "RATIFIED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "26_double_hash_signature.json",
+    "patch_ids": [
+      "LEGACY-SIG-307"
+    ],
+    "layer": "SIGNATURE",
+    "expected_result": "REJECT",
+    "existing_error_code": "VG-SIG-307",
+    "proposed_error_code": null,
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": true,
+    "ratification_status": "RATIFIED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "27_placeholder_hash.json",
+    "patch_ids": [
+      "LEGACY-SCHEMA-016"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "REJECT",
+    "existing_error_code": "VG-SCHEMA-016",
+    "proposed_error_code": null,
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "RATIFIED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "28_bad_log_head_commitment.json",
+    "patch_ids": [
+      "LEGACY-ANCHOR-511"
+    ],
+    "layer": "ANCHOR",
+    "expected_result": "REJECT",
+    "existing_error_code": "VG-ANCHOR-511",
+    "proposed_error_code": null,
+    "state_context_required": true,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "RATIFIED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  },
+  {
+    "fixture": "29_partial_record_after_fault.txt",
+    "patch_ids": [
+      "VG-P-009"
+    ],
+    "layer": "SCHEMA",
+    "expected_result": "PARSE_ERROR",
+    "existing_error_code": null,
+    "proposed_error_code": "VG-PARTIAL-RECORD",
+    "state_context_required": false,
+    "semantic_check_required": false,
+    "generator_required": false,
+    "ratification_status": "PROPOSED",
+    "notes": "Cycle 3 hardened harness expected result. Proposed codes remain non-authoritative until VG-ERROR-CODES.md is ratified."
+  }
+]
