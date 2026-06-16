@@ -1,0 +1,42 @@
+name: Validate SMC-01 Symbolic Metadata
+
+on:
+  pull_request:
+    paths:
+      - "docs/specs/symbolic_metadata.md"
+      - "schemas/symbolic_metadata.schema.json"
+      - "examples/symbolic_metadata.example.json"
+      - "tests/test_symbolic_metadata_schema.py"
+      - ".github/workflows/smc-01-validation.yml"
+      - "pyproject.toml"
+  push:
+    branches:
+      - main
+      - feature/smc-01-symbolic-metadata
+
+permissions:
+  contents: read
+
+jobs:
+  validate-smc-01:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "pyproject.toml"
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ".[dev]"
+
+      - name: Run SMC-01 validation tests
+        run: |
+          python -m pytest tests/test_symbolic_metadata_schema.py

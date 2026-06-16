@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vaultghost.org/schemas/symbolic_metadata.schema.json",
+  "title": "VaultGhost Symbolic Metadata Containment Schema",
+  "description": "Separates symbolic authorship/context markers from cryptographic or forensic evidence fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "asset_metadata",
+    "symbolic_metadata",
+    "cryptographic_signatures"
+  ],
+  "properties": {
+    "asset_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier",
+        "unicode_policy"
+      ],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unicode_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "normalization",
+            "encoding",
+            "literal_marker_required",
+            "latex_rendering_authoritative"
+          ],
+          "properties": {
+            "normalization": {
+              "const": "NFC"
+            },
+            "encoding": {
+              "const": "UTF-8"
+            },
+            "literal_marker_required": {
+              "const": true
+            },
+            "latex_rendering_authoritative": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "symbolic_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "associated_signals"
+      ],
+      "properties": {
+        "associated_signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "authorship_signal",
+              "signal_type",
+              "associated_author",
+              "contextual_domain",
+              "verification_strength",
+              "requires_external_evidence",
+              "spoofability",
+              "claim_scope",
+              "excluded_claims"
+            ],
+            "properties": {
+              "authorship_signal": {
+                "type": "string",
+                "minLength": 1
+              },
+              "signal_type": {
+                "const": "symbolic_semantic_marker"
+              },
+              "associated_author": {
+                "type": "string",
+                "minLength": 1
+              },
+              "contextual_domain": {
+                "type": "string",
+                "minLength": 1
+              },
+              "verification_strength": {
+                "const": "non_cryptographic_contextual"
+              },
+              "requires_external_evidence": {
+                "const": true
+              },
+              "spoofability": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "claim_scope": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "semantic_continuity",
+                    "stylistic_identity_signal",
+                    "non_forensic_authorship_context"
+                  ]
+                },
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "semantic_continuity"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "stylistic_identity_signal"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "non_forensic_authorship_context"
+                    }
+                  }
+                ]
+              },
+              "excluded_claims": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "legal_ownership",
+                    "date_priority",
+                    "cryptographic_authorship",
+                    "independent_origin_verification"
+                  ]
+                },
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "legal_ownership"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "date_priority"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "cryptographic_authorship"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "independent_origin_verification"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "cryptographic_signatures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "certified",
+        "method",
+        "hash_sha256",
+        "signature",
+        "public_key_id",
+        "timestamp_receipt"
+      ],
+      "properties": {
+        "certified": {
+          "type": "boolean"
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "sha256",
+            "ed25519",
+            "c2pa",
+            "opentimestamps",
+            null
+          ]
+        },
+        "hash_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "signature": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "public_key_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "timestamp_receipt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "certified": {
+                "const": false
+              }
+            },
+            "required": [
+              "certified"
+            ]
+          },
+          "then": {
+            "properties": {
+              "method": {
+                "const": null
+              },
+              "hash_sha256": {
+                "const": null
+              },
+              "signature": {
+                "const": null
+              },
+              "public_key_id": {
+                "const": null
+              },
+              "timestamp_receipt": {
+                "const": null
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
