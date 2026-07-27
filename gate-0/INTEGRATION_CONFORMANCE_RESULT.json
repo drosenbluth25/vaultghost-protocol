@@ -1,0 +1,33 @@
+{
+  "classification": "PASS_CI_CONFORMANCE_NOT_INDEPENDENT_HUMAN_REVIEW",
+  "repository": "drosenbluth25/vaultghost-integration",
+  "default_branch_commit": "c03482794dafe927ee906a0c55cd586f64eae0d1",
+  "tested_head_commit": "fc38f270f260d50b765ef63d994162d4a49acbd3",
+  "workflow_run_id": 30285680902,
+  "workflow_job_id": 90042766013,
+  "artifact_id": 8660651548,
+  "artifact_digest": "sha256:9b10f9e88334761d5e198732dd4385959e9647d2f187e206336a12f4ff628632",
+  "artifact_expires_at": "2026-10-25T16:37:57Z",
+  "component_commits": {
+    "core": "7ad3b3c51ad557aad68c36135adaefdd96fdadc2",
+    "verifier": "42347f7a992f79299a50b25d4ae54018e1ef7b93",
+    "ledger": "33e8726d47fed6acc6799b3d5cd198a873e43a81"
+  },
+  "checks": {
+    "signed_turn_record_created": "PASS",
+    "signed_turn_record_verified": "PASS",
+    "verifier_normal_baseline": "PASS",
+    "verifier_tamper_detection": "PASS",
+    "verifier_tests": "PASS",
+    "ledger_internal_consistency": "PASS",
+    "signed_conformance_envelope_created": "PASS",
+    "conformance_envelope_schema": "PASS",
+    "evidence_hash_manifest": "PASS"
+  },
+  "limitations": [
+    "GitHub-hosted CI is not independent human reproduction.",
+    "The standalone verifier does not natively consume the core TurnRecord; the integration adapter binds the live core verification result to the standalone verifier baseline.",
+    "Ledger verification establishes repository-internal consistency, not external timestamp custody, legal authorship, or malicious-maintainer resistance.",
+    "Release remains unauthorized pending human and legal controls."
+  ]
+}
