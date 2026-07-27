@@ -1,12 +1,12 @@
 {
-  "result_version": "1.0",
+  "result_version": "1.1",
   "classification": "CI_REPRODUCED_NOT_INDEPENDENT_HUMAN_REVIEW",
-  "execution_date_utc": "2026-07-27T15:47:44Z",
+  "execution_date_utc": "2026-07-27T15:50:01Z",
   "executor": {
     "type": "GITHUB_HOSTED_RUNNER",
     "workflow": "Gate 0 Reproduction",
-    "workflow_run_id": 30281672292,
-    "job_id": 90029326837,
+    "workflow_run_id": 30281840732,
+    "job_id": 90029904776,
     "runner_os": "Ubuntu 24.04.4 LTS",
     "kernel": "Linux 6.17.0-1020-azure",
     "architecture": "x86_64",
@@ -16,7 +16,7 @@
   },
   "repository": "drosenbluth25/vaultghost-verify",
   "branch": "fix/tamper-target-path",
-  "commit_sha": "6b075ae107515b6f4f6c580b454beca777e9c9ea",
+  "commit_sha": "d65955f71d13280040311ed78abb2593a1251135",
   "commands": [
     {
       "command": "make install",
@@ -45,18 +45,25 @@
     }
   ],
   "artifact": {
-    "github_artifact_id": 8659069335,
-    "name": "gate0-reproduction-ccd1b0b9742d840710e0ab2b351d47d827bc2942",
-    "digest": "sha256:bd677717412389a37cf4472d1698223c0a547998d8d592a097a85fb8efa5bc54",
-    "expires_at": "2026-10-25T15:47:33Z"
+    "github_artifact_id": 8659143022,
+    "name": "gate0-reproduction-87cf099539fdf22b8f17e9bc584c610919ec7a29",
+    "digest": "sha256:4865c487da1eac65f29436534db5783f6e092210eff60f3e885bd39be5264f99",
+    "expires_at": "2026-10-25T15:49:45Z"
   },
   "log_hashes": {
-    "environment.txt": "072a056df47b95c7d66ebc978ba74c1c787ae4435143a8973df3cd9c1d101231",
+    "environment.txt": "cad6501936eb13aa909c2067727c4942a69dc0c3524d8244e0cbf7f5056b923e",
     "install.log": "827f029061e0c64b5861bd210b4beb6369490a0a41696fa6472452a9b22e1a71",
     "verify.log": "a1c9b28ec40946a18feaec3cae3580bb3cab48a594f21b5d8128f1e04b488a41",
     "verify-tampered.log": "a510b744deb29cf8c0f04a9ea08d8ea8fc57e0a222cfce113322ca5ec91d2beb",
     "test.log": "ec3ffa0aac59859a6b73dcf0a5bb26e28dabd84d3c63f8c6d295f5c467d06b79"
   },
+  "changes_in_tested_commit": [
+    "Corrected malformed tamper-script path.",
+    "Normalized make verify-tampered to return success only when the detector emits alert code 1.",
+    "Corrected README exit-code contract and evidence boundaries.",
+    "Added GitHub-hosted Gate 0 reproduction workflow with hashed logs.",
+    "Corrected pyproject package author metadata from an AI system to Daniel Rosenbluth."
+  ],
   "limitations": [
     "This is a GitHub-hosted CI reproduction, not an independent human review.",
     "Only vaultghost-verify was executed; cross-repository interoperability was not tested.",
