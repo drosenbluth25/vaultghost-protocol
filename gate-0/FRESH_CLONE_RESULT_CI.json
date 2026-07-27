@@ -1,0 +1,71 @@
+{
+  "result_version": "1.0",
+  "classification": "CI_REPRODUCED_NOT_INDEPENDENT_HUMAN_REVIEW",
+  "execution_date_utc": "2026-07-27T15:47:44Z",
+  "executor": {
+    "type": "GITHUB_HOSTED_RUNNER",
+    "workflow": "Gate 0 Reproduction",
+    "workflow_run_id": 30281672292,
+    "job_id": 90029326837,
+    "runner_os": "Ubuntu 24.04.4 LTS",
+    "kernel": "Linux 6.17.0-1020-azure",
+    "architecture": "x86_64",
+    "python": "3.12.13",
+    "poetry_launcher": "2.4.1",
+    "locked_poetry_package": "1.7.1"
+  },
+  "repository": "drosenbluth25/vaultghost-verify",
+  "branch": "fix/tamper-target-path",
+  "commit_sha": "6b075ae107515b6f4f6c580b454beca777e9c9ea",
+  "commands": [
+    {
+      "command": "make install",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "make verify",
+      "exit_code": 0,
+      "result": "PASS",
+      "observed_status": "VERIFIED",
+      "final_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "command": "make verify-tampered",
+      "exit_code": 0,
+      "result": "PASS",
+      "underlying_detector_expected_alert_code": 1,
+      "observed_failure": "Receipt mismatch"
+    },
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "result": "PASS",
+      "tests": "2 passed in 0.07s"
+    }
+  ],
+  "artifact": {
+    "github_artifact_id": 8659069335,
+    "name": "gate0-reproduction-ccd1b0b9742d840710e0ab2b351d47d827bc2942",
+    "digest": "sha256:bd677717412389a37cf4472d1698223c0a547998d8d592a097a85fb8efa5bc54",
+    "expires_at": "2026-10-25T15:47:33Z"
+  },
+  "log_hashes": {
+    "environment.txt": "072a056df47b95c7d66ebc978ba74c1c787ae4435143a8973df3cd9c1d101231",
+    "install.log": "827f029061e0c64b5861bd210b4beb6369490a0a41696fa6472452a9b22e1a71",
+    "verify.log": "a1c9b28ec40946a18feaec3cae3580bb3cab48a594f21b5d8128f1e04b488a41",
+    "verify-tampered.log": "a510b744deb29cf8c0f04a9ea08d8ea8fc57e0a222cfce113322ca5ec91d2beb",
+    "test.log": "ec3ffa0aac59859a6b73dcf0a5bb26e28dabd84d3c63f8c6d295f5c467d06b79"
+  },
+  "limitations": [
+    "This is a GitHub-hosted CI reproduction, not an independent human review.",
+    "Only vaultghost-verify was executed; cross-repository interoperability was not tested.",
+    "The artifact is retained by GitHub for 90 days and should be archived separately if needed.",
+    "Passing included fixtures does not establish factual truth, legal ownership, novelty, external timestamp validity, or production readiness."
+  ],
+  "gate_effect": {
+    "verifier_baseline": "PASS_CI",
+    "external_human_reproduction": "STILL_REQUIRED_FOR_GATE_3",
+    "release_authorized": false
+  }
+}
