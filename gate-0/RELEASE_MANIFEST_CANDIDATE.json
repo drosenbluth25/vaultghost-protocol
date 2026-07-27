@@ -1,40 +1,59 @@
 {
-  "manifest_status": "NON_RELEASE_GATE_0_OBSERVATION",
+  "manifest_status": "NON_RELEASE_GATE_0_TESTED_COMPONENT_SET",
   "generated_on": "2026-07-27",
-  "warning": "These commits are observed repository heads/candidates, not a validated interoperable release. Do not cite this file as evidence of end-to-end reproducibility.",
+  "warning": "These commits have component-level GitHub-hosted CI evidence where noted, but they are not a validated interoperable release. Do not cite this file as evidence of end-to-end VaultGhost reproduction.",
   "components": {
     "specification": {
       "repository": "drosenbluth25/vaultghost-protocol",
       "branch": "main",
-      "observed_base_commit": "cdc5a8245d90dfb242c5b6d4925c77bab4a2dae9",
-      "authority": "CLAIMED_CANONICAL_CORRESPONDENCE_UNVERIFIED"
+      "commit": "cdc5a8245d90dfb242c5b6d4925c77bab4a2dae9",
+      "authority": "CLAIMED_CANONICAL",
+      "correspondence_status": "FAIL_CURRENT_SPEC_DOES_NOT_NORMATIVELY_DESCRIBE_IMPLEMENTATION_STACK"
     },
     "core": {
       "repository": "drosenbluth25/vaultghost-core",
       "branch": "main",
-      "observed_commit": "84c74a0eb52b8f9d322ff1bcbd18c3eacc4cc125",
-      "authority": "CANONICAL_IMPLEMENTATION_CANDIDATE"
+      "commit": "7ad3b3c51ad557aad68c36135adaefdd96fdadc2",
+      "authority": "CANONICAL_IMPLEMENTATION_CANDIDATE",
+      "execution_status": "PASS_CI",
+      "workflow_run_id": 30283272571,
+      "artifact_id": 8659705260,
+      "artifact_digest": "sha256:11891fc5452d368e72019dda69474dd45d3b9d0f983e45fc0ce680ae1df36877",
+      "observed_result": "8 tests passed; CLI help and key generation passed"
     },
     "verifier": {
       "repository": "drosenbluth25/vaultghost-verify",
       "branch": "master",
-      "observed_commit": "4f658ca5f50fcd8f94c3c1f47bcb1cc216992e23",
-      "declared_command": "make verify",
-      "execution_status": "NOT_INDEPENDENTLY_RUN"
+      "commit": "42347f7a992f79299a50b25d4ae54018e1ef7b93",
+      "declared_command": "make verify && make verify-tampered && make test",
+      "execution_status": "PASS_CI",
+      "workflow_run_id": 30281840732,
+      "artifact_id": 8659143022,
+      "artifact_digest": "sha256:4865c487da1eac65f29436534db5783f6e092210eff60f3e885bd39be5264f99",
+      "observed_result": "normal verification passed; intentional tamper rejected; 2 tests passed"
     },
     "ledger": {
       "repository": "drosenbluth25/vaultghost-chain-ledger",
       "branch": "main",
-      "observed_commit": "f06397d773bc71babb137cb63e0fdbe707a96c59",
-      "execution_status": "NOT_INDEPENDENTLY_RUN"
+      "commit": "33e8726d47fed6acc6799b3d5cd198a873e43a81",
+      "execution_status": "PASS_CI_INTERNAL_CONSISTENCY",
+      "workflow_run_id": 30283757697,
+      "artifact_id": 8659893682,
+      "artifact_digest": "sha256:bfb07f0d34a8e463c56f479f3105e6d0611255247aa6e251234e2a13dd65fdad",
+      "observed_result": "16 listed artifacts matched; one documented missing artifact remained absent"
     }
   },
+  "component_baselines": "PASS_CI",
+  "cross_repository_correspondence": "PARTIAL_WITH_MATERIAL_FAILURES",
+  "cross_repository_fixture": "ABSENT",
   "release_authorized": false,
   "blocking_conditions": [
-    "Human maintainer review of repository roles",
-    "Specification-to-code correspondence map",
-    "Fresh-clone execution logs",
-    "Resolved vaultghost-rfc authority",
+    "Human maintainer review of repository roles and this manifest",
+    "Operational specification rewrite or replacement",
+    "Canonical exchange-artifact decision",
+    "Core-to-verifier conformance fixture",
+    "Verifier-to-ledger binding test",
+    "Independent human reproduction for Gate 3",
     "Counsel-approved publication posture"
   ]
 }
