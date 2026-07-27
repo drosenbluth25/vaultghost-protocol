@@ -1,0 +1,26 @@
+{
+  "audit_date": "2026-07-27",
+  "fresh_clone_attempt": {
+    "executor": "assistant isolated runtime",
+    "result": "BLOCKED",
+    "blocker": "DNS resolution failure for github.com",
+    "project_fault": false
+  },
+  "github_actions_observation": {
+    "vaultghost_protocol_candidate_commit": "NO_PR_TRIGGERED_WORKFLOW_RUNS_OBSERVED",
+    "vaultghost_core_candidate_commit": "NO_PR_TRIGGERED_WORKFLOW_RUNS_OBSERVED",
+    "vaultghost_verify_candidate_commit": "NO_PR_TRIGGERED_WORKFLOW_RUNS_OBSERVED",
+    "vaultghost_chain_ledger_candidate_commit": "NO_PR_TRIGGERED_WORKFLOW_RUNS_OBSERVED"
+  },
+  "confirmed_static_defects": [
+    {
+      "repository": "drosenbluth25/vaultghost-verify",
+      "file": "Makefile",
+      "target": "verify-tampered",
+      "defect": "trailing slash after tools/verify_tamper.py",
+      "status": "CONFIRMED_PENDING_REMEDIATION_PR"
+    }
+  ],
+  "independent_reproduction": "NOT_COMPLETED",
+  "release_authorized": false
+}
