@@ -1,0 +1,78 @@
+{
+  "result_version": "1.1",
+  "classification": "CI_REPRODUCED_NOT_INDEPENDENT_HUMAN_REVIEW",
+  "execution_date_utc": "2026-07-27T15:50:01Z",
+  "executor": {
+    "type": "GITHUB_HOSTED_RUNNER",
+    "workflow": "Gate 0 Reproduction",
+    "workflow_run_id": 30281840732,
+    "job_id": 90029904776,
+    "runner_os": "Ubuntu 24.04.4 LTS",
+    "kernel": "Linux 6.17.0-1020-azure",
+    "architecture": "x86_64",
+    "python": "3.12.13",
+    "poetry_launcher": "2.4.1",
+    "locked_poetry_package": "1.7.1"
+  },
+  "repository": "drosenbluth25/vaultghost-verify",
+  "branch": "fix/tamper-target-path",
+  "commit_sha": "d65955f71d13280040311ed78abb2593a1251135",
+  "commands": [
+    {
+      "command": "make install",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "make verify",
+      "exit_code": 0,
+      "result": "PASS",
+      "observed_status": "VERIFIED",
+      "final_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    },
+    {
+      "command": "make verify-tampered",
+      "exit_code": 0,
+      "result": "PASS",
+      "underlying_detector_expected_alert_code": 1,
+      "observed_failure": "Receipt mismatch"
+    },
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "result": "PASS",
+      "tests": "2 passed in 0.07s"
+    }
+  ],
+  "artifact": {
+    "github_artifact_id": 8659143022,
+    "name": "gate0-reproduction-87cf099539fdf22b8f17e9bc584c610919ec7a29",
+    "digest": "sha256:4865c487da1eac65f29436534db5783f6e092210eff60f3e885bd39be5264f99",
+    "expires_at": "2026-10-25T15:49:45Z"
+  },
+  "log_hashes": {
+    "environment.txt": "cad6501936eb13aa909c2067727c4942a69dc0c3524d8244e0cbf7f5056b923e",
+    "install.log": "827f029061e0c64b5861bd210b4beb6369490a0a41696fa6472452a9b22e1a71",
+    "verify.log": "a1c9b28ec40946a18feaec3cae3580bb3cab48a594f21b5d8128f1e04b488a41",
+    "verify-tampered.log": "a510b744deb29cf8c0f04a9ea08d8ea8fc57e0a222cfce113322ca5ec91d2beb",
+    "test.log": "ec3ffa0aac59859a6b73dcf0a5bb26e28dabd84d3c63f8c6d295f5c467d06b79"
+  },
+  "changes_in_tested_commit": [
+    "Corrected malformed tamper-script path.",
+    "Normalized make verify-tampered to return success only when the detector emits alert code 1.",
+    "Corrected README exit-code contract and evidence boundaries.",
+    "Added GitHub-hosted Gate 0 reproduction workflow with hashed logs.",
+    "Corrected pyproject package author metadata from an AI system to Daniel Rosenbluth."
+  ],
+  "limitations": [
+    "This is a GitHub-hosted CI reproduction, not an independent human review.",
+    "Only vaultghost-verify was executed; cross-repository interoperability was not tested.",
+    "The artifact is retained by GitHub for 90 days and should be archived separately if needed.",
+    "Passing included fixtures does not establish factual truth, legal ownership, novelty, external timestamp validity, or production readiness."
+  ],
+  "gate_effect": {
+    "verifier_baseline": "PASS_CI",
+    "external_human_reproduction": "STILL_REQUIRED_FOR_GATE_3",
+    "release_authorized": false
+  }
+}

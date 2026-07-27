@@ -1,0 +1,43 @@
+{
+  "audit_date": "2026-07-27",
+  "canonical_specification_candidate": {
+    "repository": "drosenbluth25/vaultghost-protocol",
+    "branch": "main",
+    "commit_sha": "UNRESOLVED",
+    "normative_file": "SPECIFICATION.md",
+    "status": "CLAIMED_CANONICAL_BUT_CORRESPONDENCE_NOT_ESTABLISHED"
+  },
+  "canonical_implementation_candidate": {
+    "repository": "drosenbluth25/vaultghost-core",
+    "branch": "main",
+    "commit_sha": "UNRESOLVED",
+    "declared_verification_command": "UNRESOLVED",
+    "observed_dependencies": [
+      "rfc8785==0.1.4",
+      "jsonschema>=4.20",
+      "pytest>=8.0",
+      "cryptography>=42.0.0"
+    ],
+    "observed_readme_state": "TITLE_ONLY",
+    "baseline_result": "NOT_INDEPENDENTLY_RUN",
+    "status": "IMPLEMENTATION_AUTHORITY_NOT_ESTABLISHED"
+  },
+  "verification_utility": {
+    "repository": "drosenbluth25/vaultghost-verify",
+    "branch": "master",
+    "commit_sha": "UNRESOLVED",
+    "declared_verification_command": "make verify",
+    "declared_tamper_command": "make verify-tampered",
+    "declared_test_command": "make test",
+    "baseline_result": "NOT_INDEPENDENTLY_RUN"
+  },
+  "gate_decision": "CONDITIONAL_NO_GO",
+  "blocking_conditions": [
+    "Exact commit SHAs are not recorded in the canonical specification",
+    "The current specification does not describe the executable evidence-governance stack",
+    "The vaultghost-core README does not document installation, normative behavior, or a verification command",
+    "No independent fresh-clone reproduction was observed",
+    "Private RFC authority remains unresolved",
+    "Patent filing record and publication constraints remain unverified in this repository"
+  ]
+}

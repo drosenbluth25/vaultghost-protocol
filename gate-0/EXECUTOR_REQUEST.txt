@@ -1,0 +1,1 @@
+Execute the fresh-clone procedure in EXECUTION_HANDOFF.md on a machine with outbound GitHub access. Return the completed FRESH_CLONE_RESULT_TEMPLATE.json plus immutable command logs. Do not claim independent reproduction if the executor is an LLM reading repository files without actually running the commands.
