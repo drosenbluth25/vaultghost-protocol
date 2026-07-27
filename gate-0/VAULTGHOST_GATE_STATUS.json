@@ -8,9 +8,12 @@
   "canonical_implementation_candidate": "drosenbluth25/vaultghost-core",
   "canonical_implementation_commit": "UNRESOLVED",
   "verifier_repository": "drosenbluth25/vaultghost-verify",
-  "verifier_tested_commit": "6b075ae107515b6f4f6c580b454beca777e9c9ea",
+  "verifier_tested_commit": "d65955f71d13280040311ed78abb2593a1251135",
   "baseline_tests": "VERIFIER_CI_REPRODUCED",
-  "verifier_ci_workflow_run_id": 30281672292,
+  "verifier_ci_workflow_run_id": 30281840732,
+  "verifier_ci_job_id": 90029904776,
+  "verifier_ci_artifact_id": 8659143022,
+  "verifier_ci_artifact_digest": "sha256:4865c487da1eac65f29436534db5783f6e092210eff60f3e885bd39be5264f99",
   "verifier_ci_result": "PASS",
   "repository_correspondence": "NOT_ESTABLISHED",
   "external_human_reproduction": "NOT_OBSERVED",
@@ -22,5 +25,5 @@
   "publication_status": "HOLD_PENDING_IP_REVIEW",
   "next_required_artifact": "CROSS_REPOSITORY_CORRESPONDENCE_REPORT",
   "status": "CONDITIONAL_NO_GO_FOR_V0_7",
-  "status_reason": "The verifier baseline now passes in GitHub-hosted CI, but canonical specification/core correspondence, independent human reproduction, patent controls, and cross-repository integration remain unresolved."
+  "status_reason": "The verifier baseline passes in GitHub-hosted CI at the recorded commit, but canonical specification/core correspondence, independent human reproduction, patent controls, and cross-repository integration remain unresolved."
 }
