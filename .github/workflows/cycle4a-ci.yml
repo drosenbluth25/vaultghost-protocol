@@ -1,0 +1,48 @@
+name: Cycle 4-A gate
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - cycle4-jcs-canonicalization
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cycle4a-gate:
+    name: Cycle 4-A gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip pytest
+
+      - name: Run canonicalization gate
+        run: |
+          mkdir -p test-logs
+          python -m pytest tests/test_canonicalize.py -v --tb=short 2>&1 | tee test-logs/cycle4a_test_canonicalize_output.txt
+          grep -q "49 passed" test-logs/cycle4a_test_canonicalize_output.txt
+
+      - name: Run broader test suite
+        run: |
+          python -m pytest tests/ -v --tb=short 2>&1 | tee test-logs/cycle4a_broader_tests_output.txt
+
+      - name: Upload Cycle 4-A test logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cycle4a-test-logs
+          path: test-logs/
