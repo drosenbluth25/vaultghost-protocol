@@ -1,0 +1,7 @@
+VaultGhost generated handoff artifacts
+
+PDF: VaultGhost_Counsel_Intake_and_GitHub_Integration_Pack_v0.5.2.pdf
+PDF SHA-256: 594f5e3dff46edeb5544daa2ae64e2a075b4064261fe68c20b6b2f3a9b8e67fb
+
+Prompt TXT: VaultGhost_Manus_Kimi_GitHub_Integration_Prompt.txt
+Prompt TXT SHA-256: 4e7bde8b6d80f97528d081c3d7cd3881da89be14443e5efa02d416af41d96c52
