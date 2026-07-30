@@ -1,0 +1,21 @@
+{
+  "artifact": "vaultghost_repository_smc01_v12_ci",
+  "status": "Draft v1.2 — Local Validation Passed; CI Reproduction Gate Added",
+  "created_at": "2026-06-16",
+  "programmatic_schema_validation": "PASSED",
+  "nfc_marker_check": "PASSED",
+  "local_pytest_command": {
+    "command": "python -m pytest tests/test_symbolic_metadata_schema.py",
+    "exit_code": 0,
+    "result": "PASSED",
+    "tests_collected": 3,
+    "tests_passed": 3
+  },
+  "claim_boundary": {
+    "external_repository_ci_reproduction": "PENDING until GitHub Actions runs in repository",
+    "repository_merge_blocking": "PENDING until branch protection or ruleset requires validate-smc-01",
+    "cryptographic_anchoring": "NOT_PRESENT",
+    "independent_human_audit": "NOT_CLAIMED",
+    "legal_validation": "NOT_CLAIMED"
+  }
+}

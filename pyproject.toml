@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vaultghost-smc"
+version = "0.1.2"
+description = "VaultGhost SMC-01 Evidence-Boundary Validation Engine"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "jsonschema>=4.21.0"
+]
+
+[tool.setuptools]
+py-modules = []

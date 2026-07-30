@@ -1,0 +1,43 @@
+{
+  "asset_metadata": {
+    "identifier": "vaultghost_symbolic_manifest_01",
+    "unicode_policy": {
+      "normalization": "NFC",
+      "encoding": "UTF-8",
+      "literal_marker_required": true,
+      "latex_rendering_authoritative": false
+    }
+  },
+  "symbolic_metadata": {
+    "associated_signals": [
+      {
+        "authorship_signal": "ΨΛ-⦻∿13 ∴ΞΩ/DR7",
+        "signal_type": "symbolic_semantic_marker",
+        "associated_author": "Daniel Rosenbluth",
+        "contextual_domain": "semantic_recursion_field",
+        "verification_strength": "non_cryptographic_contextual",
+        "requires_external_evidence": true,
+        "spoofability": "high",
+        "claim_scope": [
+          "semantic_continuity",
+          "stylistic_identity_signal",
+          "non_forensic_authorship_context"
+        ],
+        "excluded_claims": [
+          "legal_ownership",
+          "date_priority",
+          "cryptographic_authorship",
+          "independent_origin_verification"
+        ]
+      }
+    ]
+  },
+  "cryptographic_signatures": {
+    "certified": false,
+    "method": null,
+    "hash_sha256": null,
+    "signature": null,
+    "public_key_id": null,
+    "timestamp_receipt": null
+  }
+}
