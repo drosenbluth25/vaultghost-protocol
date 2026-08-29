@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "exchange_id": "VG-XM-0001",
+  "source_role": "repository_resolver_execution_agent",
+  "target_role": "perplexity_external_research_contradiction_reviewer",
+  "task_type": "independent_claim_resolution_and_memory_drift_audit",
+  "canonical_repository": "drosenbluth25/vaultghost-protocol",
+  "canonical_ref": "main",
+  "canonical_commit": "6ba30ae085a1f23ccfcfddae942b9ab037528ffe",
+  "execution_surfaces": [
+    "CONNECTED_TOOL",
+    "PUBLIC_RESEARCH",
+    "MODEL_ANALYSIS",
+    "MEMORY_CONTEXT",
+    "OBSERVATIONAL_TRACE",
+    "UNAVAILABLE"
+  ],
+  "artifact_locators": [
+    {
+      "kind": "project_state",
+      "locator": "gate-0/VAULTGHOST_GATE_STATUS.json",
+      "digest": null,
+      "scope_note": "Current repository state artifact to compare against memory; resolve chronology before treating it as globally current."
+    },
+    {
+      "kind": "historical_audit",
+      "locator": "gate-0/VAULTGHOST_CANONICAL_STATE_AUDIT.md",
+      "digest": null,
+      "scope_note": "Historical Gate 0 audit; later artifacts may supersede specific operational findings."
+    },
+    {
+      "kind": "github_actions_run",
+      "locator": "https://github.com/drosenbluth25/vaultghost-core/actions/runs/27804855726",
+      "digest": null,
+      "scope_note": "CPAT Phase 1 hard-gate run to be independently re-resolved."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "VG-XM-0001-C1",
+      "text": "GitHub Actions run 27804855726 in drosenbluth25/vaultghost-core is the CPAT Phase 1 Hard Gate, completed successfully at commit 5e145c15a139839447b3941c5ad23719a58abd54, ran pytest -q with 8 tests passing and exit code 0, and preserved an uploaded hard-gate evidence artifact.",
+      "current_status": "ASSERTED_FOR_INDEPENDENT_REVIEW",
+      "evidence_class": "CONNECTED_TOOL_OBSERVED",
+      "scope": "Bounded GitHub-hosted CI execution only.",
+      "requires": [
+        "independent_public_run_resolution",
+        "commit_identity",
+        "workflow_identity",
+        "job_or_log_scope",
+        "artifact_locator"
+      ]
+    },
+    {
+      "claim_id": "VG-XM-0001-C2",
+      "text": "The remembered phrase two-commit baseline chain is terminologically inconsistent with a described C0/C1/C2 sequence unless canonical artifacts explicitly define the topology in a way that removes the conflict.",
+      "current_status": "UNRESOLVED_CONTRADICTION",
+      "evidence_class": "MEMORY_CONTEXT",
+      "scope": "Terminology/topology only.",
+      "requires": [
+        "canonical_anchoring_artifact",
+        "commit_addressable_definition"
+      ]
+    },
+    {
+      "claim_id": "VG-XM-0001-C3",
+      "text": "Perplexity conversational memory mixes durable VaultGhost doctrine with mutable operational project-state claims, so mutable status assertions require comparison to commit-addressable repository state before reuse.",
+      "current_status": "REVIEW_REQUIRED",
+      "evidence_class": "MODEL_ANALYSIS_PLUS_MEMORY_CONTEXT",
+      "scope": "Memory authority and drift, not the truth of every remembered proposition.",
+      "requires": [
+        "memory_to_repository_comparison",
+        "source_chronology",
+        "dependency_analysis"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "contradiction_id": "VG-XM-0001-K1",
+      "description": "Remembered wording says two-commit baseline chain while naming C0, C1, and C2 stages.",
+      "resolution_target": "Canonical anchoring artifacts and Git history."
+    },
+    {
+      "contradiction_id": "VG-XM-0001-K2",
+      "description": "Remembered mutable project status may post-date, pre-date, or exceed the scope of gate-0/VAULTGHOST_GATE_STATUS.json.",
+      "resolution_target": "Chronological comparison of the newest applicable commit-addressable project-state artifacts."
+    }
+  ],
+  "requested_checks": [
+    "Re-resolve CPAT run 27804855726 from public GitHub sources and return exact run, commit, workflow, job/test scope, and artifact evidence.",
+    "Search public VaultGhost repositories for canonical C0/C1/C2 anchoring terminology and preserve unresolved ambiguity if no authoritative definition exists.",
+    "Compare remembered CPAT, Gate 0, successful-run preservation, next-gate, anchoring-topology, and release-authorization assertions against applicable repository state with chronology and source dependency."
+  ],
+  "forbidden_promotions": [
+    "No independent-human-reproduction claim from GitHub-hosted CI alone.",
+    "No patentability, novelty, legal-validation, production-readiness, adoption, or release-authorization claim unless separately evidenced.",
+    "No exact backend model identity claim from display_model or user_selected_model metadata alone.",
+    "No broad PROVEN state from a bounded CI pass.",
+    "No status promotion from agreement among models."
+  ],
+  "output_contract": {
+    "claim_dispositions": [
+      "SUPPORTED_WITHIN_SCOPE",
+      "CONTRADICTED",
+      "UNRESOLVED",
+      "OUT_OF_SCOPE"
+    ],
+    "source_requirements": "Provide source URLs and immutable commit/run identifiers where available; state directly established scope and non-scope for each material source.",
+    "new_claim_labels": [
+      "PROPOSED",
+      "INFERRED"
+    ],
+    "dependency_analysis": true
+  }
+}
