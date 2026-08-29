@@ -11,8 +11,23 @@
   ],
   "source_dependency": {
     "primary_source_family": "GitHub Actions run 27804855726 and artifact 7741542848",
-    "independent_corroboration_count": 1,
-    "note": "Run metadata, job metadata, job logs, workflow source, and artifact ZIP are multiple surfaces of the same GitHub execution event. They strengthen resolution and integrity but are not counted as independent external corroboration."
+    "primary_execution_event_count": 1,
+    "independent_external_corroboration_count": 0,
+    "integrity_correspondence_checks": [
+      {
+        "object": "downloaded artifact ZIP",
+        "local_sha256": "a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7",
+        "github_recorded_sha256": "a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7",
+        "match": true
+      },
+      {
+        "object": "pytest_run.log",
+        "local_sha256": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+        "embedded_sha256": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+        "match": true
+      }
+    ],
+    "note": "Run metadata, job metadata, job logs, workflow source, artifact metadata, downloaded artifact content, and repository summaries are multiple surfaces of the same GitHub execution event. The local digest recomputations are integrity correspondence checks, not independent external corroboration or an independent execution reproduction."
   },
   "github": {
     "repository": "drosenbluth25/vaultghost-core",
