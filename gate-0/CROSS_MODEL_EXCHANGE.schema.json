@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/drosenbluth25/vaultghost-protocol/blob/main/gate-0/CROSS_MODEL_EXCHANGE.schema.json",
+  "title": "VaultGhost Cross-Model Exchange",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "exchange_id",
+    "source_role",
+    "target_role",
+    "task_type",
+    "claims",
+    "requested_checks",
+    "forbidden_promotions",
+    "output_contract"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "exchange_id": {"type": "string", "minLength": 1},
+    "source_role": {"type": "string", "minLength": 1},
+    "target_role": {"type": "string", "minLength": 1},
+    "task_type": {"type": "string", "minLength": 1},
+    "canonical_repository": {"type": ["string", "null"]},
+    "canonical_ref": {"type": ["string", "null"]},
+    "canonical_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+    "execution_surfaces": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "CONNECTED_TOOL",
+          "PUBLIC_RESEARCH",
+          "LOCAL_EXECUTION",
+          "MODEL_ANALYSIS",
+          "MEMORY_CONTEXT",
+          "OBSERVATIONAL_TRACE",
+          "UNAVAILABLE"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "artifact_locators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "locator"],
+        "properties": {
+          "kind": {"type": "string", "minLength": 1},
+          "locator": {"type": "string", "minLength": 1},
+          "digest": {"type": ["string", "null"]},
+          "scope_note": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim_id", "text", "current_status", "evidence_class"],
+        "properties": {
+          "claim_id": {"type": "string", "minLength": 1},
+          "text": {"type": "string", "minLength": 1},
+          "current_status": {"type": "string", "minLength": 1},
+          "evidence_class": {"type": "string", "minLength": 1},
+          "scope": {"type": ["string", "null"]},
+          "requires": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["contradiction_id", "description", "resolution_target"],
+        "properties": {
+          "contradiction_id": {"type": "string", "minLength": 1},
+          "description": {"type": "string", "minLength": 1},
+          "resolution_target": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "requested_checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "forbidden_promotions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "output_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_dispositions", "source_requirements", "new_claim_labels", "dependency_analysis"],
+      "properties": {
+        "claim_dispositions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "SUPPORTED_WITHIN_SCOPE",
+              "CONTRADICTED",
+              "UNRESOLVED",
+              "OUT_OF_SCOPE"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "source_requirements": {"type": "string", "minLength": 1},
+        "new_claim_labels": {
+          "type": "array",
+          "items": {"enum": ["PROPOSED", "INFERRED"]},
+          "uniqueItems": true
+        },
+        "dependency_analysis": {"type": "boolean"}
+      }
+    }
+  }
+}
