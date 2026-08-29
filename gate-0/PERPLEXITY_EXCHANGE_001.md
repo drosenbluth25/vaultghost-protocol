@@ -2,8 +2,18 @@
 
 **Target role:** Perplexity external research / contradiction reviewer  
 **Source role:** repository resolver / execution agent  
-**Status:** OPEN FOR REVIEW  
+**Status:** ROUND 1 RESPONSE RECORDED — NO CANONICAL STATE PROMOTION  
 **Governing proposal:** `gate-0/CROSS_MODEL_COORDINATION_PROTOCOL_v1.md`
+
+## Round 1 record
+
+The original review request below is preserved substantively. Round 1 artifacts are now recorded at:
+
+- `gate-0/exchanges/VG-XM-0001-PERPLEXITY-RESPONSE.md`
+- `gate-0/exchanges/VG-XM-0001-CHATGPT-PRIMARY-RESOLUTION.json`
+- `gate-0/exchanges/VG-XM-0001-ROUND1-DISPOSITION.json`
+
+Round 1 does **not** modify `gate-0/VAULTGHOST_GATE_STATUS.json`, authorize a release, resolve the C0/C1/C2 terminology contradiction, establish independent human reproduction, or make a legal/patentability claim.
 
 ## Objective
 
