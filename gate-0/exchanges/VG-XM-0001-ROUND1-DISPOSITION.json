@@ -1,0 +1,90 @@
+{
+  "exchange_id": "VG-XM-0001",
+  "round": 1,
+  "recorded_at": "2026-08-29",
+  "canonical_state_changed": false,
+  "release_authorization_changed": false,
+  "human_review_required": true,
+  "lane_results": {
+    "perplexity": {
+      "transport_provenance": "USER_TRANSMITTED_MODEL_OUTPUT",
+      "C1_live_primary_resolution": "UNRESOLVED",
+      "C1_repository_preserved_evidence": "SUPPORTED_WITHIN_SCOPE",
+      "C2": "UNRESOLVED",
+      "C3": "SUPPORTED_WITHIN_SCOPE"
+    },
+    "chatgpt": {
+      "transport_provenance": "CONNECTED_GITHUB_TOOL_PLUS_LOCAL_ARTIFACT_INSPECTION",
+      "C1": "SUPPORTED_WITHIN_SCOPE",
+      "C2": "UNRESOLVED",
+      "C3": "SUPPORTED_WITHIN_SCOPE"
+    }
+  },
+  "combined_dispositions": {
+    "VG-XM-0001-C1": {
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "basis": "The GitHub execution event was directly resolved through connected GitHub Actions metadata and logs. Artifact 7741542848 was downloaded and its ZIP SHA-256 independently recomputed locally as a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7, matching GitHub metadata and the job log. Perplexity separately found repository-preserved success evidence but did not directly resolve the live run through its lane.",
+      "scope": "bounded GitHub-hosted CI execution at the named commit and captured test scope",
+      "forbidden_promotions": [
+        "independent human reproduction",
+        "external validation",
+        "production readiness",
+        "release authorization",
+        "patentability",
+        "legal validation"
+      ]
+    },
+    "VG-XM-0001-C2": {
+      "status": "UNRESOLVED",
+      "contradiction_id": "VG-XM-0001-K1",
+      "classification": "TERMINOLOGY_OR_SEQUENCE_AMBIGUITY",
+      "basis": "Neither lane resolved a canonical artifact defining whether C2 is part of, or external to, the remembered two-commit baseline chain terminology.",
+      "resolution_authority": [
+        "canonical anchoring-sequence artifact",
+        "canonical baseline artifact",
+        "commit-addressable Git history explicitly defining C0/C1/C2 semantics"
+      ]
+    },
+    "VG-XM-0001-C3": {
+      "status": "SUPPORTED_WITHIN_SCOPE",
+      "basis": "Existing commit-addressable project-state artifacts preserve a narrower engineering-pass/human-legal-hold boundary than remembered conversational statements that imply global Gate 0 closure, release authorization, or automatic PCT/non-provisional progression.",
+      "rule": "Durable doctrine may be retained in memory; mutable project state must defer to newer artifact-linked state records."
+    }
+  },
+  "source_dependency_analysis": {
+    "C1": {
+      "primary_event": "GitHub Actions run 27804855726",
+      "surfaces": [
+        "run metadata",
+        "job metadata",
+        "job logs",
+        "workflow source at commit",
+        "artifact metadata",
+        "downloaded artifact ZIP",
+        "repository-preserved success summary"
+      ],
+      "independence_note": "These surfaces mostly derive from the same GitHub execution event. Agreement among ChatGPT, Perplexity, repository summaries, and GitHub-derived metadata must not be counted as multiple independent validations. The locally recomputed artifact digest is an integrity check of the downloaded GitHub artifact, not an independent execution reproduction."
+    },
+    "C2": {
+      "independence_note": "Model agreement that the wording is ambiguous does not resolve the canonical terminology."
+    },
+    "C3": {
+      "independence_note": "The controlling evidence is the commit-addressable repository state, not agreement between models."
+    }
+  },
+  "unresolved_contradictions": [
+    {
+      "id": "VG-XM-0001-K1",
+      "status": "UNRESOLVED",
+      "description": "Remembered 'two-commit baseline chain' wording coexists with a C0/C1/C2 sequence without a presently resolved canonical definition explaining the topology."
+    }
+  ],
+  "next_actions": [
+    "Keep PR #15 draft until human review of the coordination protocol and Round 1 records.",
+    "Do not modify gate-0/VAULTGHOST_GATE_STATUS.json solely because of Round 1.",
+    "Resolve C0/C1/C2 terminology only from a canonical anchoring/baseline artifact or an explicit human-authored corrective artifact.",
+    "Treat CPAT C1 as verified only within the captured GitHub CI scope; preserve all non-claims with the result.",
+    "If a future independent human fresh-clone reproduction is performed, record it as a separate evidence event rather than upgrading this CI event by narrative."
+  ],
+  "status_promotion_recommended": false
+}

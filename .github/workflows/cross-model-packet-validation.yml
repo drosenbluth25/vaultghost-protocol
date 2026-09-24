@@ -1,0 +1,26 @@
+name: Cross-model exchange packet shape
+
+on:
+  pull_request:
+    paths:
+      - 'gate-0/CROSS_MODEL_EXCHANGE.schema.json'
+      - 'gate-0/exchanges/VG-XM-0001.json'
+      - 'gate-0/validate_cross_model_exchange.py'
+      - 'tests/test_cross_model_exchange.py'
+      - '.github/workflows/cross-model-packet-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  packet-shape:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'jsonschema==4.26.0'
+      - run: python gate-0/validate_cross_model_exchange.py gate-0/exchanges/VG-XM-0001.json
+      - run: python -m unittest discover -s tests -p 'test_cross_model_exchange.py' -v

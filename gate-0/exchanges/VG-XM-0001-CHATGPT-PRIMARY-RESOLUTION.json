@@ -1,0 +1,93 @@
+{
+  "exchange_id": "VG-XM-0001",
+  "resolver": "ChatGPT",
+  "recorded_at": "2026-08-29",
+  "claim_id": "VG-XM-0001-C1",
+  "disposition": "SUPPORTED_WITHIN_SCOPE",
+  "evidence_classes": [
+    "CONNECTED_TOOL_DIRECT_RESOLUTION",
+    "ARTIFACT_DOWNLOAD_AND_LOCAL_DIGEST_MATCH",
+    "LOCAL_FILE_INSPECTION"
+  ],
+  "source_dependency": {
+    "primary_source_family": "GitHub Actions run 27804855726 and artifact 7741542848",
+    "primary_execution_event_count": 1,
+    "independent_external_corroboration_count": 0,
+    "integrity_correspondence_checks": [
+      {
+        "object": "downloaded artifact ZIP",
+        "local_sha256": "a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7",
+        "github_recorded_sha256": "a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7",
+        "match": true
+      },
+      {
+        "object": "pytest_run.log",
+        "local_sha256": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+        "embedded_sha256": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+        "match": true
+      }
+    ],
+    "note": "Run metadata, job metadata, job logs, workflow source, artifact metadata, downloaded artifact content, and repository summaries are multiple surfaces of the same GitHub execution event. The local digest recomputations are integrity correspondence checks, not independent external corroboration or an independent execution reproduction."
+  },
+  "github": {
+    "repository": "drosenbluth25/vaultghost-core",
+    "run_id": 27804855726,
+    "run_url": "https://github.com/drosenbluth25/vaultghost-core/actions/runs/27804855726",
+    "run_api_url": "https://api.github.com/repos/drosenbluth25/vaultghost-core/actions/runs/27804855726",
+    "workflow_name": "CPAT Phase 1 Hard Gate",
+    "workflow_path": ".github/workflows/cpat-phase1-hardgate.yml",
+    "head_sha": "5e145c15a139839447b3941c5ad23719a58abd54",
+    "job": {
+      "id": 82282652062,
+      "name": "hardgate",
+      "conclusion": "success",
+      "job_url": "https://github.com/drosenbluth25/vaultghost-core/actions/runs/27804855726/job/82282652062"
+    },
+    "artifact": {
+      "id": 7741542848,
+      "name": "cpat-phase1-hardgate-evidence",
+      "metadata_sha256": "a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7",
+      "downloaded_zip_sha256": "a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7",
+      "digest_match": true,
+      "size_bytes": 6368,
+      "artifact_url": "https://github.com/drosenbluth25/vaultghost-core/actions/runs/27804855726/artifacts/7741542848"
+    }
+  },
+  "downloaded_artifact_inspection": {
+    "file_count": 11,
+    "git_head_txt": "5e145c15a139839447b3941c5ad23719a58abd54",
+    "pytest_exit_code_txt": 0,
+    "pytest_run_log": "........                                                                 [100%]\n8 passed in 0.04s",
+    "pytest_run_log_sha256_computed": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+    "pytest_run_sha256_embedded": "54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+    "pytest_log_digest_match": true,
+    "python_version": "Python 3.11.15",
+    "os_recorded": "Linux runnervm7b5n9 6.17.0-1018-azure #18~24.04.1-Ubuntu SMP Thu May 28 16:39:11 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux"
+  },
+  "job_log_direct_resolution": {
+    "observed": true,
+    "material_observations": [
+      "Checkout resolved commit 5e145c15a139839447b3941c5ad23719a58abd54",
+      "Python 3.11.15 was configured",
+      "pytest -q executed",
+      "8 passed in 0.04s",
+      "pytest_exit_code=0",
+      "pytest_run.log SHA-256 was 54d62a0149f447ee2867b9e102287fade45e0a057ff3b969489678c98884e9ae",
+      "artifact upload finalized as ID 7741542848",
+      "uploaded ZIP SHA-256 was a8d75859a8dd50de0e7bf083d0071643a533c5b94de475d747c767917b6c9ea7"
+    ]
+  },
+  "supported_claim": "GitHub Actions run 27804855726 for the CPAT Phase 1 Hard Gate completed successfully at commit 5e145c15a139839447b3941c5ad23719a58abd54. The hardgate job ran pytest -q, reported 8 passed in 0.04s, returned exit code 0, hashed its test evidence, and uploaded artifact 7741542848. A fresh download of that artifact ZIP produced the same SHA-256 digest recorded by GitHub metadata and the job log.",
+  "does_not_establish": [
+    "independent human reproduction",
+    "independent external validation",
+    "universal correctness",
+    "production readiness",
+    "security assurance beyond the tested scope",
+    "external adoption",
+    "patentability or novelty",
+    "legal validity",
+    "release authorization"
+  ],
+  "status_promotion_recommended": false
+}
